@@ -6,35 +6,51 @@ from rest_framework.response import Response
 from .models import Employee
 from .serializer import EmployeeSerializer
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+from rest_framework import generics
+from .serializer import UserSerializer
+from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework import permissions
 # Create your views here.
 
-@api_view(['GET'])
-def AllEmployees(request):
-    employees=Employee.objects.all()
-    WorkingEmployees=employees.filter(Employed=True)
-    serializer=EmployeeSerializer(WorkingEmployees,many=True)
-    return Response(serializer.data)
-@api_view(['POST'])
-def HireEmployee(request):
-    serializer=EmployeeSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
-@api_view(['GET'])
-def FireEmployee(request,pk):
-    FiredEmployee=get_object_or_404(Employee,pk=pk)
-    FiredEmployee.Employed=False
-    FiredEmployee.save()
-    return HttpResponse("Successfully Deleted")
-@api_view(['PUT'])
-def UpdateSalary(request,pk):
-    changedEmployee=Employee.objects.get(pk=pk)
-    serializer=EmployeeSerializer(instance=changedEmployee,data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
-@api_view(['GET'])
-def GetEmployee(request,pk):
-    Emp=Employee.objects.get(pk=pk)
-    serializer=EmployeeSerializer(Emp)
-    return Response(serializer.data)
+
+class EmployeeList(generics.ListCreateAPIView):
+    queryset=Employee.objects.all()
+    serializer_class=EmployeeSerializer
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+    permission_classes=[permissions.IsAuthenticated]
+
+
+class FireEmployee(APIView):
+    def Fire(self,request,pk):
+        FiredEmployee=get_object_or_404(Employee,pk=pk)
+        FiredEmployee.Employed=False
+        FiredEmployee.save()
+        return Response("Successfully Deleted",status=status.HTTP_204_NO_CONTENT)
+    permission_classes=[permissions.IsAuthenticatedOrReadOnly]
+
+class UpdateSalary(APIView):
+    
+    def UpdateSalary(self,request,pk):
+        changedEmployee=Employee.objects.get(pk=pk)
+        serializer=EmployeeSerializer(instance=changedEmployee,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        return Response(serializer.data)
+    permission_classes=[permissions.IsAuthenticatedOrReadOnly]
+    
+
+
+class GetEmployee(generics.RetrieveAPIView):
+    queryset=Employee.objects.all()
+    serializer_class=EmployeeSerializer
+
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

@@ -1,6 +1,6 @@
 import React from 'react'
 import { red } from '@mui/material/colors';
-import { AppBar, Avatar, Box, Button, Card, CardActions, CardContent, CardHeader, IconButton, Paper, Toolbar, Typography } from '@mui/material';
+import { AppBar, Avatar, Box, Button, Card, CardActions, CardContent, CardHeader, IconButton, Input, Paper, Toolbar, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 
@@ -50,6 +50,7 @@ function FireEmployee() {
         <Button variant='outlined' onClick={FireEmployee}>Fire</Button>
     </Paper>
 </div>
+
         </div>
   )
 }
