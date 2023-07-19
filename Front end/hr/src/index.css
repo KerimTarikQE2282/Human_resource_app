@@ -11,3 +11,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.Layout{
+  display: flex;
+}
+.LoginMain{
+  background-image: url('./Images//snapedit_1689766533507.jpeg') ;
+  background-size: cover;
+  height: 763px;
+}
+
+.login{
+  position: absolute;
+ 
+  top:20%;
+  left: 35%;
+  width: 20%;
+  
+}
+.innerform form img{
+  width: 200px;
+}
+
+.logo{
+  position: relative;
+  left:25px;
+  bottom: 20px;
+}
+.login form {
+padding: 50px;
+
+}
+.login button{
+margin-top: 4%;
+}
+.EmployeeHire{
+  position: absolute;
+  left: 40vw;
+  top: 20vh;
+}
+.EmployeeHire form input{
+  margin-top: 20px;
+}
