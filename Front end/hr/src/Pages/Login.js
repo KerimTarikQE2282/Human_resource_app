@@ -44,7 +44,7 @@ function Login() {
     <div className='LoginMain'>
       
       <div>
-        <div className='login' sx={{backgroundColor: 'primary'}}>
+        <div className='login' sx={{backgroundColor: 'primary'}}> 
           <div className='innerform'>
             <Paper elevation={12}>
               <form onSubmit={HandleSubmit}>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppBar, Box, Button, IconButton, Input, Paper, TextField, Toolbar, Typography,Drawer } from '@mui/material'
 import {makeStyles} from '@mui/styles'
+import {Link} from 'react-router-dom'
 const drawerWidth=250
 const useStyles=makeStyles({
   drawer:{
@@ -12,6 +13,7 @@ const useStyles=makeStyles({
 })
 function Layout(props) {
  const classes=useStyles()
+
   return (
 
     <div className='Layout'>
@@ -32,21 +34,10 @@ function Layout(props) {
           </Typography>
           <Button color="inherit"></Button>
         </Toolbar>
-        <Drawer
-        className={classes.drawer}
-        variant='permanent'
-        anchor='left'
-        classes={{paper: classes.drawerpaper}}
-        >
-          <div>
-            <Typography variant='h5'>
-              Ninja notes
-
-            </Typography>
-          </div>
-        </Drawer>
+       
       </AppBar>
     </Box>
+    <br></br>
     {props.children}
     </div>
   )

@@ -44,11 +44,47 @@ padding: 50px;
 .login button{
 margin-top: 4%;
 }
+.EmployeeHireGeneral{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 50px;
+  background-image: url('./Images/13900618_5291450.jpg');
+  background-size: cover;
+}
 .EmployeeHire{
   position: absolute;
-  left: 40vw;
-  top: 20vh;
+  left: 15vw;
+  top: 5vh;
+  
+  background-position: 500px 20px;
+
+  
 }
 .EmployeeHire form input{
   margin-top: 20px;
+}
+.sidebarLink{
+  margin-top: 30vh;
+}
+.sidebarLink a{
+  margin-top: 20px;
+}
+.EmployeeHireField  *
+{
+display: flex;
+display: inline-block
+}
+.EmployeeHireField * *{
+  margin: 20px;
+  margin-right: 100px;
+}
+
+.EmployeeHire div{
+  padding: 5px;
+}
+.EmployeeHire h5{
+  position: relative;
+  top:30px;
+  left: 40px;
 }
