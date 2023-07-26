@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 function NavBar() {
   return (
-    <div> <Box sx={{ flexGrow: 1 }}>
+    <div> <Box sx={{ flexGrow: 1 }} className='NavBar'>
     <AppBar position="static">
       <Toolbar>
         <IconButton

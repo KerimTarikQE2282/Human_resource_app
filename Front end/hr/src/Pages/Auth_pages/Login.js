@@ -4,20 +4,9 @@ import React from 'react'
 import  logo from '../../Images/img-removebg-preview.png'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-{/*import { makeStyles } from '@mui/styles';
+import {login} from '../../actions/auth'
 
-
-const useStyles = makeStyles((theme) => ({
-  gradientButton: {
-    background: 'linear-gradient(to right, #667eea, #764ba2)',
-    color: 'white',
-    '&:hover': {
-      background: 'linear-gradient(to right, #764ba2, #667eea)',
-    },
-  },
-}));*/}
-
-function Login() {
+function Login( {login}) {
   const [formData,setFormData]=React.useState({
     email:'',
     Password:''
@@ -30,19 +19,10 @@ function Login() {
   )
   
  }
- 
+ const {email,password}=formData
   const HandleSubmit=(e)=>{
     e.preventDefault()
-    try{
-      const response=axios.post(' http://localhost:8000/api-auth/login/ ',{
-        username:formData.email,
-
-        Password:formData.Password
-      })
-      console.log(response)
-    }catch(error){
-      console.error(error)
-    }
+    login(email,password)
   }
 
 // is the user authenticated?
@@ -78,7 +58,7 @@ function Login() {
                  value={formData.password}
                  />
                 <br/>
-                <Button variant='contained' type='submit'  sx={{width:210}}>Submit</Button>
+                <Button variant='contained' type='submit'  sx={{width:210}}>Login</Button>
               </form>
               <p>
                 Forgot your password <Link to='/ResetPassword'>sign up</Link>
@@ -96,4 +76,4 @@ function Login() {
 }
 
 
-export default connect(null)(Login)
+export default connect(null,{login})(Login)

@@ -1,9 +1,8 @@
-import React from 'react'
+import {combineReducers} from 'redux';
+import auth from './auth';
 
-function index() {
-  return (
-    <div>index</div>
-  )
-}
 
-export default index
+
+export default combineReducers({
+  auth
+})

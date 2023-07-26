@@ -14,6 +14,14 @@ code {
 .Layout{
   display: flex;
 }
+.NavBar{
+  width: 100vw;
+}
+.LoginMain p{
+  position: relative;
+  bottom:4vh;
+  left:4vw;
+}
 .LoginMain{
   background-image: url('./Images//snapedit_1689766533507.jpeg') ;
   background-size: cover;
@@ -28,8 +36,22 @@ code {
   width: 20%;
   
 }
+.innerform div{
+  position: relative;
+  left: 20px;
+}
+.innerform div{
+  position: relative;
+  left: 20px;
+}
+.innerform button{
+  position: relative;
+  left: 40px;
+}
 .innerform form img{
   width: 200px;
+  position: relative;
+  left: 50px;
 }
 
 .logo{
