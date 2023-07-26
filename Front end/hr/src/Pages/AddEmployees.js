@@ -2,6 +2,9 @@ import { Button, Paper, TextField, Typography } from '@mui/material'
 import React from 'react'
 
 function AddEmployees() {
+  const HandleSubmit=()=>{
+    return 'Hello'
+  }
   return (
     
     <div className='EmployeeHireGeneral' sx={{ position: 'relative', top: '10px' }}>
@@ -13,7 +16,7 @@ function AddEmployees() {
         Hire Employee
         
       </Typography>
-        <form className='EmployeeHireField' onsubmit={formsubmitted} enctype='multipart/form-data'>
+        <form className='EmployeeHireField' onsubmit={HandleSubmit} enctype='multipart/form-data'>
           <div>
             <TextField
             placeholder='First Name'

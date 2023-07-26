@@ -1,7 +1,9 @@
 import { AppBar, Box, Button, IconButton, Input, Paper, TextField, Toolbar, Typography } from '@mui/material'
 import axios from 'axios'
 import React from 'react'
-import  logo from '../Images/img-removebg-preview.png'
+import  logo from '../../Images/img-removebg-preview.png'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 {/*import { makeStyles } from '@mui/styles';
 
 
@@ -16,21 +18,26 @@ const useStyles = makeStyles((theme) => ({
 }));*/}
 
 function Login() {
-  const [userName,setUserName]=React.useState('')
-  const [Password,setPassword]=React.useState('')
-  const userNameAccept=(e)=>{
-    setUserName(e.target.value)
-  }
-  const PasswordAccept=(e)=>{
-    setPassword(e.target.value)
-  }
-  console.log(userName,Password)
+  const [formData,setFormData]=React.useState({
+    email:'',
+    Password:''
+  })
+ const onChange=(e)=>{
+  setFormData({
+  ...formData,
+  [e.target.name]:e.target.value
+  } 
+  )
+  
+ }
+ 
   const HandleSubmit=(e)=>{
     e.preventDefault()
     try{
       const response=axios.post(' http://localhost:8000/api-auth/login/ ',{
-        username:userName,
-        Password:Password
+        username:formData.email,
+
+        Password:formData.Password
       })
       console.log(response)
     }catch(error){
@@ -38,8 +45,8 @@ function Login() {
     }
   }
 
-{/*  const classes = useStyles();*/}
-{/*className={classes.gradientButton}*/}
+// is the user authenticated?
+//if so redirect to home page 
   return (
     <div className='LoginMain'>
       
@@ -53,12 +60,29 @@ function Login() {
               variant='h6'
               className='logo'
               >Human Resource</Typography>
-                <TextField onChange={userNameAccept} placeholder='user name'/>
+                <TextField 
+                onChange={onChange} 
+                placeholder='Email'
+                type='email'
+                name='email'
+                value={formData.email}
+                required
+                />
                 <br/>
-                <TextField type="password" placeholder='Password'  sx={{marginTop:5,marginBottom:3}}onChange={PasswordAccept}/>
+                <TextField 
+                type="password"
+                 placeholder='Password'  
+                 sx={{marginTop:5,marginBottom:3}}
+                 onChange={onChange}
+                 name='password'
+                 value={formData.password}
+                 />
                 <br/>
                 <Button variant='contained' type='submit'  sx={{width:210}}>Submit</Button>
               </form>
+              <p>
+                Forgot your password <Link to='/ResetPassword'>sign up</Link>
+              </p>
               
             </Paper>
           </div>
@@ -66,6 +90,10 @@ function Login() {
       </div>
     </div>
   )
+  const mapStateToProps=state=>{
+    //is authenticated
+  }
 }
 
-export default Login
+
+export default connect(null)(Login)
