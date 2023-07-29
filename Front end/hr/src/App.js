@@ -12,6 +12,7 @@ import Layout from './Layout';
 import ViewEmployee from './Pages/ViewEmployee'
 import { Provider } from 'react-redux';
 import store from './store';
+import HomePage from './Pages/HomePage'
 
 
 
@@ -30,7 +31,7 @@ function App() {
         <Route path='/ViewEmployees' element={<ViewEmployees/>}></Route>
         <Route path='/Fire/:id' element={<FireEmployee/>}></Route>
         <Route path='/AddEmployee' element={<AddEmployee/>}></Route>
-        <Route path='/LandingPage' element={<ViewEmployee/>}></Route>
+        <Route path='/HomePage' element={<HomePage/>}></Route>
       </Routes>
       </Layout>
       

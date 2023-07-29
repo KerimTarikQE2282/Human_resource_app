@@ -2,11 +2,11 @@ import { AppBar, Box, Button, IconButton, Input, Paper, TextField, Toolbar, Typo
 import axios from 'axios'
 import React from 'react'
 import  logo from '../../Images/img-removebg-preview.png'
-import { Link } from 'react-router-dom'
+import { Link ,Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {login} from '../../actions/auth'
 
-function Login( {login}) {
+function Login( login , isAuthenticated) {
   const [formData,setFormData]=React.useState({
     email:'',
     Password:''
@@ -22,11 +22,15 @@ function Login( {login}) {
  const {email,password}=formData
   const HandleSubmit=(e)=>{
     e.preventDefault()
-    login(email,password)
+    login(email,password) 
   }
 
 // is the user authenticated?
 //if so redirect to home page 
+if (isAuthenticated){
+  console.log('hwat os gojt kndak')
+ return  <Navigate replace to='/HomePage'/>
+}
   return (
     <div className='LoginMain'>
       
@@ -39,7 +43,7 @@ function Login( {login}) {
               <Typography 
               variant='h6'
               className='logo'
-              >Human Resource</Typography>
+              >Human Resourceerer</Typography>
                 <TextField 
                 onChange={onChange} 
                 placeholder='Email'
@@ -61,7 +65,7 @@ function Login( {login}) {
                 <Button variant='contained' type='submit'  sx={{width:210}}>Login</Button>
               </form>
               <p>
-                Forgot your password <Link to='/ResetPassword'>sign up</Link>
+                Forgot your password <Link to='/ResetPassword'>Reset Password</Link>
               </p>
               
             </Paper>
@@ -70,10 +74,11 @@ function Login( {login}) {
       </div>
     </div>
   )
-  const mapStateToProps=state=>{
-    //is authenticated
-  }
+ 
 }
 
+const mapStateToProps = state =>({
+  isAuthenticated : state.auth.isAuthenticated
+});
 
-export default connect(null,{login})(Login)
+export default connect(mapStateToProps,{login})(Login)

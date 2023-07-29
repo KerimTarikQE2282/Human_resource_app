@@ -12,6 +12,7 @@ from .serializer import UserSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework import permissions
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
