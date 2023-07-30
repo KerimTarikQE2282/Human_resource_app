@@ -6,7 +6,7 @@ import { Link ,Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {login} from '../../actions/auth'
 
-function Login( login , isAuthenticated) {
+function Login( {login , isAuthenticated}) {
   const [formData,setFormData]=React.useState({
     email:'',
     Password:''
@@ -28,7 +28,7 @@ function Login( login , isAuthenticated) {
 // is the user authenticated?
 //if so redirect to home page 
 if (isAuthenticated){
-  console.log('hwat os gojt kndak')
+  console.log(isAuthenticated)
  return  <Navigate replace to='/HomePage'/>
 }
   return (

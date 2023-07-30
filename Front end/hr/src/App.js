@@ -20,10 +20,13 @@ function App() {
   return (
     <Provider store={store}>
     <div>
+      <Routes>
+      <Route path='/' element={<Login/>}/>
+      </Routes>
       
       <Layout>
       <Routes>
-        <Route path='/' element={<Login/>}/>
+        
         <Route path='/signUp' element={<Signup/>}></Route>
         <Route path='/ResetPassword' element={<ResetPassword/>}></Route>
         <Route path='/ResetPasswordConfirm/confirm/:uid/:token' element={<ResetPasswordConfirm/>}></Route>

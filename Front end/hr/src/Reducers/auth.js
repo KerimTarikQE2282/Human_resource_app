@@ -23,14 +23,14 @@ export default function(state=initialState,action){
         case AUTHENTICATED_SUCCESS:
             return{
                 ...state,
-                isAuthenticated:true
+                isAuthenticated:true/***changed */
             }
 
         case LOGIN_SUCCESS:
             localStorage.setItem('access',payload.access)
             return{
                 ...state,
-                isAuthenticated:true,
+                isAuthenticated:true,/**changed */
                 access:payload.access,
                 refresh:payload.refresh
             }
