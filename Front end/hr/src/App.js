@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Route,Routes } from 'react-router-dom';
 import ViewEmployees from './Pages/ViewEmployee';
 import FireEmployee from './Pages/FireEmployee';
@@ -11,6 +11,7 @@ import AddEmployee from './Pages/AddEmployees'
 import Layout from './Layout';
 import ViewEmployee from './Pages/ViewEmployee'
 import { Provider } from 'react-redux';
+import CheckEmail from './Pages/Auth_pages/CheckEmail';
 import store from './store';
 import HomePage from './Pages/HomePage'
 
@@ -29,9 +30,10 @@ function App() {
         
         <Route path='/signUp' element={<Signup/>}></Route>
         <Route path='/ResetPassword' element={<ResetPassword/>}></Route>
-        <Route path='/ResetPasswordConfirm/confirm/:uid/:token' element={<ResetPasswordConfirm/>}></Route>
+        <Route path='/password/reset/confirm/:uid/:token'  element={<ResetPasswordConfirm/>}  Component={ResetPasswordConfirm}></Route>
         <Route path='/activate/:uid/:token' element={<activateAcount/>}></Route>
         <Route path='/ViewEmployees' element={<ViewEmployees/>}></Route>
+        <Route path='/CheckEmail' element={<CheckEmail/>}></Route>
         <Route path='/Fire/:id' element={<FireEmployee/>}></Route>
         <Route path='/AddEmployee' element={<AddEmployee/>}></Route>
         <Route path='/HomePage' element={<HomePage/>}></Route>

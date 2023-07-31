@@ -6,7 +6,7 @@ import { Link ,Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {login} from '../../actions/auth'
 
-function Login( {login , isAuthenticated}) {
+function Login( {login , isAuthenticated,user}) {
   const [formData,setFormData]=React.useState({
     email:'',
     Password:''
@@ -27,10 +27,12 @@ function Login( {login , isAuthenticated}) {
 
 // is the user authenticated?
 //if so redirect to home page 
-if (isAuthenticated){
-  console.log(isAuthenticated)
- return  <Navigate replace to='/HomePage'/>
-}
+//if (isAuthenticated){
+  //console.log(isAuthenticated)
+ //return  <Navigate replace to='/HomePage'/>
+//}
+console.log(user)
+
   return (
     <div className='LoginMain'>
       
@@ -78,7 +80,8 @@ if (isAuthenticated){
 }
 
 const mapStateToProps = state =>({
-  isAuthenticated : state.auth.isAuthenticated
+  isAuthenticated : state.auth.isAuthenticated,
+  user:state.auth.user
 });
 
 export default connect(mapStateToProps,{login})(Login)

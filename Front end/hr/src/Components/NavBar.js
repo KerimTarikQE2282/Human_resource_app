@@ -1,33 +1,41 @@
+
 import React, { Fragment } from 'react';
-import { AppBar, Box, Button, IconButton, Input, Paper, TextField, Toolbar, Typography, Drawer } from '@mui/material';
+import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { Link, Navigate } from 'react-router-dom';
-import { logout } from '../actions/auth';
+import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { logout } from '../actions/auth';
+
 function NavBar({ logout, isAuthenticated }) {
+  const navigate=useNavigate()
   const guestLinks = () => {
     return (
       <Fragment>
-        <Button>
-          <Link to='/' />
+        <Button
+        variant='contained'
+        color='warning'
+        >
+          <Link to='/'>Home</Link>
         </Button>
       </Fragment>
     );
   };
+
   const authLinks = () => {
     return (
-      <Button variant='contained' color='error' onClick={logout}>
+      <Button variant='contained' color='error' onClick={handleLogout}>
         Logout
       </Button>
     );
   };
-  const HandleLogout = () => {
+
+  const handleLogout = () => {
+    
     logout();
+    navigate('/')
   };
-  if(!isAuthenticated){
-    return  <Navigate replace to='/'/>
-  }
+
   return (
     <div>
       <Box sx={{ flexGrow: 1 }} className='NavBar'>
@@ -41,7 +49,7 @@ function NavBar({ logout, isAuthenticated }) {
           </Toolbar>
         </AppBar>
       </Box>
-      <br></br>
+      <br />
     </div>
   );
 }

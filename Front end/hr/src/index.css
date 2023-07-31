@@ -11,9 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+.Layout{
+  display: flex;
+}
+.layoutChildren{
+  margin-left: 2vw;
+}
 .NavBar{
-  width: 100vw;
+  width:88vw;
 }
 .LoginMain p{
   position: relative;
@@ -116,19 +121,45 @@ display: inline-block
   top: 5vh;
   
   background-position: 500px 20px;
- height: 30vh;
- width: 40vw;
- padding: 10em;
+ height: 50vh;
+ width: 30vw;
+
  position: relative;
- left: 22vw;
+ left: 30vw;
  
   
 }
 .ResetPassword form{
   position: relative;
-  left:10em
+  left:10em;
+  margin-top: 10vh;
 
 }
 .ResetPassword form button{
-  margin-top: 5vh;
+  margin-top: 2vh;
+  width: 12vw;
+}
+.ResetPassword h5{
+  position: relative;
+  left: 8vw;
+  top:10vh ;
+  
+}
+.checkEmail{
+  background-image: url('./Images//snapedit_1689766533507.jpeg') ;
+  background-size: cover;
+  height: 100vh;
+}
+.checkEmail h5{
+position: relative;
+top: 30vh;
+left: 35%;
+
+}
+.HomePage p{
+margin: 50 em;
+}
+.TaskList{
+  width: 25vw;
+  height: 30vh;
 }

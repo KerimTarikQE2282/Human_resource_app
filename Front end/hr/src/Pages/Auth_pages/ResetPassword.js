@@ -1,18 +1,32 @@
-import { Button, Paper, TextField } from '@mui/material'
+import { Button, Paper, TextField, Typography } from '@mui/material'
 import React from 'react'
-
-function ResetPassword() {
+import { reset_password } from '../../actions/auth'
+import { useNavigate } from 'react-router-dom'
+import { connect } from 'react-redux'
+function ResetPassword({reset_password}) {
+  const navigate=useNavigate()
+  const [RequestSent,setRequestSent]=React.useState(false)
   const [email,setEmail]=React.useState('')
   const handleChange=(e)=>{
     setEmail(e.target.value)
     console.log(email)
   }
   const handleSubmit=(e)=>{
+    console.log('reached here')
     e.preventDefault()
+    reset_password(email);
+    setRequestSent(true)
+    navigate('/CheckEmail')
   }
+ 
   return (
     <div>
     <Paper className='ResetPassword' elevation={12}>
+      <Typography
+      variant='h5'
+      sx={{ fontWeight: 'bold',  }}
+      > Reset Password</Typography>
+      <br/>
     <form onSubmit={handleSubmit}>
       <TextField
       placeholder='Email'
@@ -22,7 +36,7 @@ function ResetPassword() {
       />
 
   <br></br>
-    <Button variant='contained'>Submit</Button>
+    <Button variant='contained' type='submit'>Submit</Button>
 
     </form>
     </Paper>
@@ -30,4 +44,4 @@ function ResetPassword() {
   )
 }
 
-export default ResetPassword
+export default connect(null,{reset_password}) (ResetPassword)
