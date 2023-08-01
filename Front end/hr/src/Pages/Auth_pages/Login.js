@@ -22,15 +22,16 @@ function Login( {login , isAuthenticated,user}) {
  const {email,password}=formData
   const HandleSubmit=(e)=>{
     e.preventDefault()
+    console.log(email,password)
     login(email,password) 
   }
 
 // is the user authenticated?
 //if so redirect to home page 
-//if (isAuthenticated){
-  //console.log(isAuthenticated)
- //return  <Navigate replace to='/HomePage'/>
-//}
+if (isAuthenticated){
+  console.log('is authenticated',isAuthenticated)
+ return  <Navigate replace to='/HomePage'/>
+}
 console.log(user)
 
   return (

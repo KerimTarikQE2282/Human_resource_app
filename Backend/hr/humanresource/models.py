@@ -21,48 +21,38 @@ class Reference(models.Model):
 
 
 class UserAccountManager(BaseUserManager):
-    def create_user(self, email, name, password=None):
+    #fix middle name here
+    def create_user(self, email, First_name, Last_name, password=None, phoneNumber=None, employed=True, title='', department='', salary=None):
         if not email:
             raise ValueError('Users must have an email address')
         email = self.normalize_email(email)
-        user = self.model(name=name, email=email)
+        user = self.model(First_name=First_name, Last_name=Last_name, email=email, phoneNumber=phoneNumber, employed=employed, title=title, department=department, salary=salary)
         user.set_password(password)
-        user.save()
-
-        if user.is_staff:
-            try:
-                employee = Employee.objects.get(email=user.email)
-            except Employee.DoesNotExist:
-                employee = None
-
-            # If an Employee object doesn't exist, create one
-            if not employee:
-                employee = Employee()
-                employee.email = user.email
-
-            # Set the Employee object fields to match the User object fields
-            employee.phoneNumber = ''
-            employee.title = ''
-            # Set other fields as needed
-            employee.save()
-
+        user.save(using=self._db)
         return user
 
 
 class UserAccount(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=200, unique=True)
-    name = models.CharField(max_length=55)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    objects = UserAccountManager()
+    First_name = models.CharField(max_length=55,default='')
+    Middle_name=models.CharField(max_length=55,default='')
+    Last_name=models.CharField(max_length=55,default='')
+    phoneNumber = models.CharField(max_length=20,default='')
+    employed = models.BooleanField(default=True)
+    title = models.CharField(max_length=200 ,default='')
+    department = models.CharField(max_length=200,default='')
+    salary = models.IntegerField(null=True,default=0)
+ 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name','is_active']
+    REQUIRED_FIELDS = ['First_name', 'Last_name', 'password']
+
+    objects = UserAccountManager()
 
     def get_full_name(self):
-        return self.name
+        return f"{self.first_name} {self.middle_name} {self.last_name}"
 
     def get_short_name(self):
-        return self.name
+        return self.first_name
 
     def __str__(self):
-        return self.name
+        return self.email

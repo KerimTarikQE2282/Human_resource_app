@@ -25,6 +25,10 @@ code {
   bottom:4vh;
   left:4vw;
 }
+.innerform div form{
+  position:relative;
+  right:2vw ;
+}
 .LoginMain{
   background-image: url('./Images//snapedit_1689766533507.jpeg') ;
   background-size: cover;
@@ -41,7 +45,7 @@ code {
 }
 .innerform div{
   position: relative;
-  left: 20px;
+  left: 50px;
 }
 .innerform div{
   position: relative;
@@ -100,6 +104,10 @@ margin-top: 4%;
 display: flex;
 display: inline-block
 }
+.EmployeeHire{
+  position: relative;
+  right: 20vw;
+}
 .EmployeeHireField * *{
   margin: 20px;
   margin-right: 100px;
@@ -107,6 +115,7 @@ display: inline-block
 
 .EmployeeHire div{
   padding: 5px;
+  
 }
 .EmployeeHire h5{
   position: relative;
