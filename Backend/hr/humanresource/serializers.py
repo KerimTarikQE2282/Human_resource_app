@@ -6,4 +6,4 @@ User=get_user_model()
 class UserCreateSerializer(UserCreateSerializer):
     class META(UserCreateSerializer):
         model=User
-        fields=('id','email','First_name','Middle_name','Last_name','phoneNumber','employed','title','department','salary','password')
+        fields=('id','email','First_name','Middle_name','Last_name','phoneNumber','employed','title','department','salary','password','employee_image')
