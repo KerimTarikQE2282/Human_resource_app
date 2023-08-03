@@ -9,6 +9,8 @@ PASSWORD_RESET_FAIL,
 PASSWORD_RESET_SUCCESS,
 PASSWORD_RESET_CONFIRM_FAIL,
 PASSWORD_RESET_CONFIRM_SUCCESS,
+USER_CREATE_SUCCESS,
+USER_CREATE_FAIL,
 LOGOUT,
 
 } from '../actions/types'
@@ -18,7 +20,8 @@ const initialState={
 access:localStorage.getItem('access'),
 refresh:localStorage.getItem('refresh'),
 isAuthenticated:null,
-user:null
+user:null,
+user_created:null
 
 }
 export default function(state=initialState,action){
@@ -72,6 +75,13 @@ export default function(state=initialState,action){
                     return {
                         ...state
                     }
+                case USER_CREATE_SUCCESS:
+                    return{
+                        ...state,
+                        user_created:true
+
+                    }
+                    
         
         default :
         return state

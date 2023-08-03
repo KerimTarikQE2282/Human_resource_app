@@ -20,7 +20,7 @@ function App() {
   return (
     <Provider store={store}>
       <div>
-        {location.pathname === '/' ? (
+        {location.pathname === '/' || location.pathname === '/ResetPassword' || location.pathname === '/password/reset/confirm/:uid/:token' ? (
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/ResetPassword" element={<ResetPassword />} />

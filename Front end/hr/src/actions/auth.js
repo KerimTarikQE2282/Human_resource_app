@@ -10,6 +10,8 @@ import {
     PASSWORD_RESET_SUCCESS,
     PASSWORD_RESET_CONFIRM_FAIL,
     PASSWORD_RESET_CONFIRM_SUCCESS,
+    USER_CREATE_SUCCESS,
+    USER_CREATE_FAIL,
     LOGOUT
     
     } from './types'
@@ -106,6 +108,28 @@ import {
             })
         }
     };
+    export const Add_user=(Firstname,Middlename,Lastname,email,Employed,Title,Department,password,re_password)=>async dispatch=>{
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        const body=JSON.stringify({Firstname,Middlename,Lastname,email,Employed,Title,Department});
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`, body, config);
+    
+            dispatch({
+                type: USER_CREATE_SUCCESS,
+                payload: res.data
+            });
+    
+            dispatch(load_user());
+        } catch (err) {
+            dispatch({
+                type: USER_CREATE_FAIL
+            })
+        }
+    }
     export const reset_password=(email)=> async dispatch=>{
         const config = {
             headers: {
