@@ -21,7 +21,7 @@ access:localStorage.getItem('access'),
 refresh:localStorage.getItem('refresh'),
 isAuthenticated:null,
 user:null,
-user_created:null
+
 
 }
 export default function(state=initialState,action){
@@ -75,12 +75,7 @@ export default function(state=initialState,action){
                     return {
                         ...state
                     }
-                case USER_CREATE_SUCCESS:
-                    return{
-                        ...state,
-                        user_created:true
-
-                    }
+                
                     
         
         default :

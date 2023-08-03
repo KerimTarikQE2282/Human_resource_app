@@ -1,41 +1,36 @@
 import { Button, Paper, TextField, Typography } from '@mui/material'
 import React from 'react'
-import {Add_user} from '../actions/auth'
+import {AddEmployee} from '../actions/Registrations'
+import { connect } from 'react-redux'
 
-function AddEmployees() {
-  const [newEMployee,setNewEmployee]=React.useState({
-    Firstname:'',
-    Middlename:'',
-    Lastname:'',
+function AddEmployees({AddEmployee}) {
+  const [newEmployee,setnewEmployee]=React.useState({
+    First_name:'',
+    Middle_name:'',
+    Last_name:'',
     email:'',
     Employed:'',
     Title:'',
+    Phonenumber:'',
     Department:'',
     password:'',
     re_password:''
     
   })
+  
   const handleChange=(e)=>{
- setNewEmployee(
+ setnewEmployee(
 {
-...newEMployee,
+...newEmployee,
 [e.target.name]:e.target.value
  })
   }
-  const HandleSubmit=(e)=>{
-    e.preventDefault()
-    console.log(newEMployee)
-    Add_user(newEMployee.Firstname,
-      newEMployee.Middlename,
-      newEMployee.Lastname,
-      newEMployee.Employed,
-      newEMployee.Title,
-      newEMployee.email,
-      newEMployee.password,
-      newEMployee.re_password)
-
-  }
-  
+     
+const HandleSubmit=(e)=>{
+  e.preventDefault()
+  AddEmployee(newEmployee)
+  console.log(newEmployee)
+      }
   return (
     
     <div className='EmployeeHireGeneral' sx={{ position: 'relative', top: '10px' }}>
@@ -51,29 +46,29 @@ function AddEmployees() {
           <div>
             <TextField
             placeholder='First Name'
-            name="Firstname"
-            value={newEMployee.Firstname}
+            name="First_name"
+            value={newEmployee.First_name}
             onChange={handleChange}
             />
             <br/>
             <TextField
             placeholder='Middle name '
-            name="Middlename"
-            value={newEMployee.Middlename}
+            name="Middle_name"
+            value={newEmployee.Middle_name}
             onChange={handleChange}
             />
             <br/>
             <TextField
-            placeholder='Last Name'
-            name="Lastname"
-            value={newEMployee.Lastname}
+            placeholder='Last_Name'
+            name="Last_name"
+            value={newEmployee.Last_name}
             onChange={handleChange}
             />
             <br/>
             <TextField
             placeholder='Email'
             name="email"
-            value={newEMployee.email}
+            value={newEmployee.email}
             onChange={handleChange}
             />
             </div>
@@ -82,7 +77,7 @@ function AddEmployees() {
             <TextField
             placeholder='Phone number'
             name="Phonenumber"
-            value={newEMployee.Phonenumber}
+            value={newEmployee.Phonenumber}
             onChange={handleChange}
             />
           
@@ -90,26 +85,26 @@ function AddEmployees() {
             <TextField
             placeholder='Title'
             name="Title"
-            value={newEMployee.Title}
+            value={newEmployee.Title}
             onChange={handleChange}
             />
             <br/>
             <TextField
             placeholder='Department'
             name='Department'
-            value={newEMployee.Department}
+            value={newEmployee.Department}
             onChange={handleChange}
             />
            <TextField
            placeholder='password'
            name='password'
-           value={newEMployee.password}
+           value={newEmployee.password}
            onChange={handleChange}
            />
            <TextField
            placeholder='Retype your password'
            name='re_password'
-           value={newEMployee.re_password}
+           value={newEmployee.re_password}
            onChange={handleChange}
            />
         <Button
@@ -127,5 +122,9 @@ function AddEmployees() {
     
   )
 }
+const mapStateToProps = state =>({
+  user_created:  state.Registrations.Registrations,
+  
+});
 
-export default AddEmployees
+export default connect(mapStateToProps,{AddEmployee})(AddEmployees)
