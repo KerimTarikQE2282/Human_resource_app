@@ -22,7 +22,7 @@ function Login( {login , isAuthenticated,user}) {
  const {email,password}=formData
   const HandleSubmit=(e)=>{
     e.preventDefault()
-    console.log(email,password)
+    
     login(email,password) 
   }
 

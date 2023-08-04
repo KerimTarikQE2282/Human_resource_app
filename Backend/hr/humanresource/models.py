@@ -44,7 +44,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     salary = models.IntegerField(null=True,default=0)
     is_active=models.BooleanField(default=True)
     is_staff=models.BooleanField(default=False)
-    employee_image=models.ImageField(_("Image"), upload_to=upload_to,default='posts/default.jpg')
+    employee_image=models.ImageField(_("Image"), upload_to=upload_to,default=' ')
  
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['First_name','Middle_name', 'Last_name', 'phoneNumber','employed','title','department','salary','password','employee_image']

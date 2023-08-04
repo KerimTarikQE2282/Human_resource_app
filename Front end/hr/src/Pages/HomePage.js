@@ -8,7 +8,7 @@ import { connect, useSelector } from 'react-redux';
 
 function LandingPage({user}) {
 
-console.log(user)
+
   return (
     <div className='HomePage'>
       <Welcome props={user} />

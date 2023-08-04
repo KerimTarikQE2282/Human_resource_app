@@ -16,7 +16,7 @@ function AddEmployees({AddEmployee}) {
     salary: 0,
     password: '',
     re_password:'',
-    employee_image: '',
+    employee_image: null,
     
   })
   
@@ -32,13 +32,13 @@ function AddEmployees({AddEmployee}) {
       setnewEmployee(
         {
           ...newEmployee,
-          employee_image: e.target.employee_image
+          employee_image: URL.createObjectURL(e.target.files)
         }
       )
     }
 
   }
-  const   {First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image }=newEmployee
+  const   {First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image}=newEmployee
 const HandleSubmit=(e)=>{
   e.preventDefault()
   AddEmployee(First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image )
@@ -55,7 +55,7 @@ const HandleSubmit=(e)=>{
         Hire Employee
         
       </Typography>
-        <form className='EmployeeHireField' onSubmit={HandleSubmit} >
+        <form className='EmployeeHireField' onSubmit={HandleSubmit} enctype="multipart/form-data" >
           <div>
             <TextField
             placeholder='First Name'
@@ -121,10 +121,10 @@ const HandleSubmit=(e)=>{
            onChange={handleChange}
            />
            <input
-           accept='"image/*'
+           accept="image/*"
            name='employee_image'
            onChange={handleChange}
-           value={newEmployee.employee_image}
+           value={employee_image}
            type='file'
            />
         <Button

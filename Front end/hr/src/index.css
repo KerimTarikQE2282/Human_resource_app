@@ -74,16 +74,17 @@ padding: 50px;
 margin-top: 4%;
 }
 .EmployeeHireGeneral{
-  width: 100vw;
+  width: 90vw;
   height: 100vh;
   position: absolute;
-  top: 50px;
+  top: 7vh;
+  right: 0.5vw;
   background-image: url('./Images/13900618_5291450.jpg');
   background-size: cover;
 }
 .EmployeeHire{
   position: absolute;
-  left: 15vw;
+  left: 2vw;
   top: 5vh;
   
   background-position: 500px 20px;
