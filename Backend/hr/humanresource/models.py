@@ -24,7 +24,7 @@ class PathAndRename(object):
 
    def __call__(self, instance, filename):
        # add extension as per your requirement, I am using .png
-       ext = "jpg"
+       ext = ".png"
        # set filename as random string
        filename = '{}.{}'.format(uuid4().hex, ext)
        # return the whole path to the file

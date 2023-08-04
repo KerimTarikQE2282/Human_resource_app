@@ -10,61 +10,35 @@ import {
 
 
 
-export const AddEmployee = (
-    First_name,
-    Middle_name,
-    Last_name,
-    email,
-    phoneNumber,
-    employed,
-    title,
-    department,
-    salary,
-    password,
-    re_password,
-    employee_image
-  ) => async (dispatch) => {
-    const header= {
+export const AddEmployee = (newEmployee,postImage) => async (dispatch) => {
+    
+      const config = {
         headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-    console.log('hello',
-      First_name,
-      Middle_name,
-      Last_name,
-      email,
-      phoneNumber,
-      employed,
-      title,
-      department,
-      salary,
-      password,
-      re_password,
-      employee_image
-    );
-    console.log('axios reached here');
+            'Content-Type': 'multipart/form-data'
+            
+        }
+    }; 
+    console.log(postImage.employee_image);
   
     const formData = new FormData();
-    formData.append('First_name', First_name);
-    formData.append('Middle_name', Middle_name);
-    formData.append('Last_name', Last_name);
-    formData.append('email', email);
-    formData.append('phoneNumber', phoneNumber);
-    formData.append('employed', employed);
-    formData.append('title', title);
-    formData.append('department', department);
-    formData.append('salary', salary);
-    formData.append('password', password);
-    formData.append('re_password', re_password);
-    formData.append('employee_image', employee_image);
+    formData.append('First_name',newEmployee.First_name);
+    formData.append('Middle_name',newEmployee.Middle_name);
+    formData.append('Last_name',newEmployee.Last_name);
+    formData.append('email',newEmployee.email);
+    formData.append('phoneNumber',newEmployee.phoneNumber);
+    formData.append('employed',newEmployee.employed);
+    formData.append('title',newEmployee.title);
+    formData.append('department',newEmployee.department);
+    formData.append('salary',newEmployee.salary);
+    formData.append('password',newEmployee.password);
+    formData.append('re_password',newEmployee.re_password);
+    formData.append('employee_image',postImage.employee_image[0]); 
+    
+
+    
   
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/users/`,
-        formData,
-       header
-      );
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`,formData,config);
   
       dispatch({
         type: USER_CREATE_SUCCESS,

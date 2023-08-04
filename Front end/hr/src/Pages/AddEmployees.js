@@ -16,9 +16,10 @@ function AddEmployees({AddEmployee}) {
     salary: 0,
     password: '',
     re_password:'',
-    employee_image: '',
+    
     
   })
+  const [postImage,setPostImage]=React.useState(null);
   
   const handleChange=(e)=>{
     if ([e.target.name !=='employee_image']){
@@ -28,21 +29,21 @@ function AddEmployees({AddEmployee}) {
         [e.target.name]:e.target.value
          })
     }
-    else{
-      setnewEmployee(
+    if ([e.target.name]=='employee_image'){
+      setPostImage(
         {
-          ...newEmployee,
-          employee_image: e.target.employee_image
+          employee_image: e.target.files,
         }
       )
     }
-
+    
   }
-  const   {First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image }=newEmployee
+  //const   {First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image }=newEmployee
 const HandleSubmit=(e)=>{
   e.preventDefault()
-  AddEmployee(First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image )
-  console.log(newEmployee)
+  
+  AddEmployee(newEmployee,postImage)
+  
       }
   return (
     
@@ -55,7 +56,7 @@ const HandleSubmit=(e)=>{
         Hire Employee
         
       </Typography>
-        <form className='EmployeeHireField' onSubmit={HandleSubmit} >
+        <form className='EmployeeHireField' onSubmit={HandleSubmit}  encType="multipart/form-data">
           <div>
             <TextField
             placeholder='First Name'
@@ -121,12 +122,11 @@ const HandleSubmit=(e)=>{
            onChange={handleChange}
            />
            <input
-           accept='"image/*'
-           name='employee_image'
-           onChange={handleChange}
-           value={newEmployee.employee_image}
-           type='file'
-           />
+  accept="image/*"
+  name='employee_image'
+  onChange={handleChange}
+  type='file'
+/>
         <Button
        variant='contained' 
        type='submit'

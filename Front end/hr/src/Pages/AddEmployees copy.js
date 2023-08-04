@@ -21,28 +21,23 @@ function AddEmployees({AddEmployee}) {
   })
   
   const handleChange=(e)=>{
-    if ([e.target.name !=='employee_image']){
+    
       setnewEmployee(
         {
         ...newEmployee,
         [e.target.name]:e.target.value
          })
-    }
-    else{
-      setnewEmployee(
-        {
-          ...newEmployee,
-          employee_image: URL.createObjectURL(e.target.files)
-        }
-      )
-    }
+    
+    
+    console.log(newEmployee)
 
   }
   const   {First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image}=newEmployee
 const HandleSubmit=(e)=>{
   e.preventDefault()
-  AddEmployee(First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image )
-  console.log(newEmployee)
+  console.log('submittt',newEmployee)
+  AddEmployee(First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image)
+  
       }
   return (
     
@@ -117,7 +112,7 @@ const HandleSubmit=(e)=>{
            <TextField
            placeholder='Retype your password'
            name='re_password'
-           value={newEmployee.re_password}
+           value={re_password}
            onChange={handleChange}
            />
            <input
