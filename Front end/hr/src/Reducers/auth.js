@@ -21,11 +21,11 @@ access:localStorage.getItem('access'),
 refresh:localStorage.getItem('refresh'),
 isAuthenticated:null,
 user:null,
-
-
 }
+
 export default function(state=initialState,action){
     const {type,payload}=action
+    console.log('ressssssssss===>',payload)
     switch(type){
         case AUTHENTICATED_SUCCESS:
             return{
@@ -44,7 +44,9 @@ export default function(state=initialState,action){
         case USER_LOADED_SUCCESS:
             return{
                 ...state,
-                user:payload
+                user:payload,
+                
+
             }
         case AUTHENTICATED_FAILED:
             return{

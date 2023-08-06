@@ -60,13 +60,13 @@ import {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `JWT ${localStorage.getItem('access')}`,
-                    'Accept': 'application/json'
+                
                 }
             }; 
     
             try {
                 const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/users/me/`, config);
-                console.log(res)
+                
                 dispatch({
                     type: USER_LOADED_SUCCESS,
                     payload: res.data

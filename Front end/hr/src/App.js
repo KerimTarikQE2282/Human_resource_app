@@ -39,7 +39,7 @@ function App() {
               <Route path="/ViewEmployees" element={<ViewEmployees />} />
               <Route path="/CheckEmail" element={<CheckEmail />} />
               <Route path="/Fire/:id" element={<FireEmployee />} />
-              <Route path="/AddEmployee" element={<AddEmployee />} />
+              <Route path="/AddEmployee" element={<AddEmployee/>} />
               <Route path="/HomePage" element={<HomePage />} />
             </Routes>
           </Layout>

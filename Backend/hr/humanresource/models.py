@@ -3,19 +3,18 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.utils.translation import gettext_lazy as _
 from uuid import uuid4
 from django.utils.deconstruct import deconstructible
-
+import os
 class UserAccountManager(BaseUserManager):
     #fix middle name here
-    def create_user(self, email, First_name, Middle_name,Last_name, password=None, phoneNumber=None, employed=True, title='', department='', salary=None,employee_image=''):
+    def create_user(self, email, password=None):
         if not email:
             raise ValueError('Users must have an email address')
         email = self.normalize_email(email)
-        user = self.model(First_name=First_name, Middle_name=Middle_name, Last_name=Last_name, email=email, phoneNumber=phoneNumber, employed=employed, title=title, department=department, salary=salary,employee_image=employee_image)
+        user = self.model( email=email)
         user.set_password(password)
         user.save(using=self._db)
         return user
-def upload_to(instance,filename):
-    return 'posts/{filename}'.format(filename=filename)
+
 
 @deconstructible
 class PathAndRename(object):
@@ -34,6 +33,25 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     username_validator = None
     username = None
     email = models.EmailField(max_length=200, unique=True)
+    is_active=models.BooleanField(default=True)
+    is_staff=models.BooleanField(default=False)
+ 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['password']
+
+    objects = UserAccountManager()
+    def __str__(self):
+        return self.email
+    #///////////////////////////////////////////////Djoser//////////////////////////////
+def upload_employee_images_to(instance,filename):
+    return 'posts/employee_images/{filename}'.format(filename=filename)
+def upload_employee_contractual_images_to(instance,filename):
+    return 'posts/employee_contractual_images/{filename}'.format(filename=filename)
+def upload_Referer_images_to(instance,filename):
+    return 'posts/Referer_images/{filename}'.format(filename=filename)
+
+class Employee(models.Model):
+    email = models.EmailField(max_length=200, unique=True)
     First_name = models.CharField(max_length=55,default='')
     Middle_name=models.CharField(max_length=55,default='')
     Last_name=models.CharField(max_length=55,default='')
@@ -42,20 +60,18 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     title = models.CharField(max_length=200 ,default='')
     department = models.CharField(max_length=200,default='')
     salary = models.IntegerField(null=True,default=0)
-    is_active=models.BooleanField(default=True)
-    is_staff=models.BooleanField(default=False)
-    employee_image=models.ImageField(_("Image"), upload_to=upload_to,default=' ')
- 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['First_name','Middle_name', 'Last_name', 'phoneNumber','employed','title','department','salary','password','employee_image']
-
-    objects = UserAccountManager()
+   
+    employee_image=models.ImageField(_("Image"), upload_to=upload_employee_images_to,default='posts/default.jpg')
+    contractual_agreement=models.ImageField(_("Image"), upload_to=upload_employee_contractual_images_to,default='posts/default.jpg' )
 
     def get_full_name(self):
         return f"{self.First_name} {self.Middle_name} {self.Last_name}"
 
     def get_short_name(self):
         return self.First_name
-
-    def __str__(self):
-        return self.email
+    
+class Referer(models.Model):
+    First_name=models.CharField(max_length=55,default='')
+    Middle_name=models.CharField(max_length=55,default='')
+    Last_name=models.CharField(default='', max_length=50)
+    Referer_image=models.ImageField(_("Image"), upload_to=upload_Referer_images_to,default='posts/default.jpg')

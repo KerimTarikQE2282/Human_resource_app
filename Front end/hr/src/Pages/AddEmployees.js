@@ -1,9 +1,10 @@
 import { Button, Paper, TextField, Typography } from '@mui/material'
 import React from 'react'
-import {AddEmployee} from '../actions/Registrations'
+import {AddEmployeeAuthentication,AddEmployeeData} from '../actions/Registrations'
 import { connect } from 'react-redux'
 
-function AddEmployees({AddEmployee}) {
+
+function AddEmployees({AddEmployeeAuthentication,AddEmployeeData,user_auth_created}) {
   const [newEmployee,setnewEmployee]=React.useState({
     First_name: '',
     Middle_name: '',
@@ -39,12 +40,34 @@ function AddEmployees({AddEmployee}) {
     
   }
   //const   {First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image }=newEmployee
-const HandleSubmit=(e)=>{
-  e.preventDefault()
+  const {email,password,re_password}=newEmployee
+  const {First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary,employee_image }=newEmployee
+  const HandleSubmit = (e) => {
+    e.preventDefault();
   
-  AddEmployee(newEmployee,postImage)
-  
-      }
+
+      AddEmployeeAuthentication(email, password, re_password);
+      console.log("back here")
+       AddEmployeeData(
+        First_name,
+        Middle_name,
+        Last_name,
+        email,
+        phoneNumber,
+        employed,
+        title,
+        department,
+        salary,
+        employee_image
+      );
+      
+     
+    
+ 
+  };
+
+     
+      
   return (
     
     <div className='EmployeeHireGeneral' sx={{ position: 'relative', top: '10px' }}>
@@ -143,8 +166,8 @@ const HandleSubmit=(e)=>{
   )
 }
 const mapStateToProps = state =>({
-  user_created:  state.Registrations.Registrations,
+  user_auth_created:  state.Registrations.Registrations,
   
 });
 
-export default connect(mapStateToProps,{AddEmployee})(AddEmployees)
+export default connect(mapStateToProps,{AddEmployeeData,AddEmployeeAuthentication})(AddEmployees)
