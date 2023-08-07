@@ -54,32 +54,34 @@ export const AddEmployeeAuthentication = (email,password,re_password) => async (
       });
     }
   };
-export const AddEmployeeData=(First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary )=>async dispatch=>{
+export const AddEmployeeData=(First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,employee_image )=>async dispatch=>{
  console.log("Reached here")
- console.log({email,First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary})
-  const config={
-    headers:{
-      'Content-Type': 'application/json'
-    }
-  }    
-  //  const formData = new FormData();
-  //    formData.append('First_name',First_name);
-  //    formData.append('Middle_name',Middle_name);
-  //    formData.append('Last_name',Last_name);
-  //    formData.append('email',email);
-  //    formData.append('phoneNumber',phoneNumber);
-  //    formData.append('employed',employed);
-  //    formData.append('title',title);
-  //    formData.append('department',department);
-  //    formData.append('salary',salary);
+ console.log({email,First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary,employee_image})
+ const config = {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+}; 
+const employeeImageFile = await fetch(employee_image).then((response) => response.blob());
+   const formData = new FormData();
+     formData.append('First_name',First_name);
+     formData.append('Middle_name',Middle_name);
+     formData.append('Last_name',Last_name);
+     formData.append('email',email);
+     formData.append('phoneNumber',phoneNumber);
+     formData.append('employed',employed);
+     formData.append('title',title);
+     formData.append('department',department);
+     formData.append('salary',salary);
+     formData.append('employee_image', employeeImageFile, 'image.jpg');
  
-    const body=JSON.stringify({email,First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary})
+    //const body=JSON.stringify({email,First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary,employee_image})
    console.log('updated')
-    console.log(body)
+   // console.log(body)
     
      try{
      
-      const res=await axios.post('http://127.0.0.1:8000/api/Employee-create/',body,config)
+      const res=await axios.post('http://127.0.0.1:8000/api/Employee-create/',formData,config)
      
       dispatch({
         type: USER_CREATE_SUCCESS,

@@ -10,6 +10,7 @@ from .serializers import UserSerializer
 from .serializers import EmployeeSerializer
 from rest_framework.views import APIView
 from rest_framework import status
+from rest_framework.parsers import MultiPartParser,FormParser
 from rest_framework import permissions
 
 from rest_framework.permissions import AllowAny
@@ -25,23 +26,55 @@ def Employee_list(request):
     Employees=Employee.objects.all()
     Serialized_employee=EmployeeSerializer(Employees,many=True)
     return Response(Serialized_employee.data)
-@api_view(['Get'])
-def Employee_Detail(request,user_email):
-    My_Employee=Employee.objects.all(email=user_email)
-    Serialized_Employee=EmployeeSerializer(My_Employee)
-    return Response(Serialized_Employee.data)
 
 
-@api_view(['POST'])
-@permission_classes([AllowUnauthenticated])
-def Create_Employee(request):
-    Serialized_employee=EmployeeSerializer(data=request.data)    
-    if Serialized_employee.is_valid():
-        Serialized_employee.save()
-    else:
-        return Response(Serialized_employee.errors, status=status.HTTP_400_BAD_REQUEST)
-    print(Serialized_employee.data)
-    return Response(Serialized_employee.data)
+
+class Employee_Detail(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, user_email, format=None):
+        try:
+            employee = Employee.objects.get(email=user_email)
+        except Employee.DoesNotExist:
+            return Response({'error': 'Employee not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        serialized_employee = EmployeeSerializer(employee)
+        return Response(serialized_employee.data)
+
+ 
+
+
+# @api_view(['POST'])
+# @permission_classes([AllowUnauthenticated])
+# def Create_Employee(request):
+#     Serialized_employee=EmployeeSerializer(data=request.data)    
+#     if Serialized_employee.is_valid():
+#         Serialized_employee.save()
+#     else:
+#         return Response(Serialized_employee.errors, status=status.HTTP_400_BAD_REQUEST)
+#     print(Serialized_employee.data)
+#     return Response(Serialized_employee.data)
+
+class Create_Employee (APIView):
+    #permission_classes=[permissions.IsAuthenticated]
+   
+    permission_classes=([AllowUnauthenticated])
+
+    def post(self,request,format=None):
+        print(request.data) 
+        serialzer=EmployeeSerializer(data=request.data)
+        if serialzer.is_valid():
+            serialzer.save()
+            return Response(serialzer.data,status=status.HTTP_200_OK)
+        else:
+            return Response(serialzer.data,status=status.HTTP_400_BAD_REQUEST)
+
+
+            
+
+
+
+
 
 @api_view(['POST'])
 def Update_employee(request,email):

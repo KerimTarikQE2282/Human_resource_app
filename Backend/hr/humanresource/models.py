@@ -60,7 +60,6 @@ class Employee(models.Model):
     title = models.CharField(max_length=200 ,default='')
     department = models.CharField(max_length=200,default='')
     salary = models.IntegerField(null=True,default=0)
-   
     employee_image=models.ImageField(_("Image"), upload_to=upload_employee_images_to,default='posts/default.jpg')
     contractual_agreement=models.ImageField(_("Image"), upload_to=upload_employee_contractual_images_to,default='posts/default.jpg' )
 
