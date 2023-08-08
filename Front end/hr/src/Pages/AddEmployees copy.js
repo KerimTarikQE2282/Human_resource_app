@@ -16,27 +16,32 @@ function AddEmployees({AddEmployee}) {
     salary: 0,
     password: '',
     re_password:'',
-    employee_image: null,
+   
     
   })
+  const [employeeImage,setemployeeImage]=React.useState(null)
   
   const handleChange=(e)=>{
-    
-      setnewEmployee(
-        {
-        ...newEmployee,
-        [e.target.name]:e.target.value
-         })
-    
-    
-    console.log(newEmployee)
+      if ([e.target.name]=='employee_image'){
+        setemployeeImage({
+          image:e.target.files,
+        })
+      }
+      else{
+        setnewEmployee(
+          {
+          ...newEmployee,
+          [e.target.name]:e.target.value
+           })
+      }
+      console.log(employeeImage.image)
 
   }
-  const   {First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image}=newEmployee
+  const   {First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password}=newEmployee
 const HandleSubmit=(e)=>{
   e.preventDefault()
   console.log('submittt',newEmployee)
-  AddEmployee(First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image)
+  AddEmployee(First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employeeImage)
   
       }
   return (

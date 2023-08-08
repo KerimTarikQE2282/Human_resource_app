@@ -22,13 +22,13 @@ function Welcome({user,image}) {
   }, [user]);*/
   //console.log("Welcome",user)
   //console.log(user?.employee_image)
-console.log(image)
+console.log(props)
 
   return (
     <Paper className='TaskList'>
   <Typography variant='h5'>First name {user?.First_name}</Typography>
-  <Typography variant='h5'>Image: {image}</Typography>
- {image && <img src={image} alt='Employee' />}
+   <img src={`http://localhost:8000${image}/`}></img>
+ {image && <img  alt='Employee' />}
   <Typography></Typography>
      
      </Paper>

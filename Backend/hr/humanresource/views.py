@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from django.http import HttpResponse
 from django.http import JsonResponse
 from django.http import HttpResponse
 from rest_framework.decorators import api_view,permission_classes
@@ -22,6 +24,7 @@ class AllowUnauthenticated(BasePermission):
     def has_permission(self, request, view):
         return True
 @api_view(['Get'])
+@permission_classes([AllowUnauthenticated])
 def Employee_list(request):
     Employees=Employee.objects.all()
     Serialized_employee=EmployeeSerializer(Employees,many=True)
@@ -29,19 +32,27 @@ def Employee_list(request):
 
 
 
+
+from django.http import HttpResponse
+
 class Employee_Detail(APIView):
     permission_classes = [AllowAny]
 
-    def get(self, request, user_email, format=None):
+    def get(self, request, email, format=None):
         try:
-            employee = Employee.objects.get(email=user_email)
+            employee = Employee.objects.get(email=email)
         except Employee.DoesNotExist:
             return Response({'error': 'Employee not found'}, status=status.HTTP_404_NOT_FOUND)
 
-        serialized_employee = EmployeeSerializer(employee)
-        return Response(serialized_employee.data)
+        if employee.employee_image:
+            image_path = employee.employee_image.path
 
- 
+            with open(image_path, 'rb') as f:
+                image_data = f.read()
+
+            return HttpResponse(image_data, content_type='image/jpeg')
+
+        return Response({'error': 'Employee image not found'}, status=status.HTTP_404_NOT_FOUND)
 
 
 # @api_view(['POST'])

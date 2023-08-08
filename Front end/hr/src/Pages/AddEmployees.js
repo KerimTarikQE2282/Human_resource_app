@@ -1,4 +1,5 @@
 import { Button, Paper, TextField, Typography } from '@mui/material'
+
 import React from 'react'
 import {AddEmployeeAuthentication,AddEmployeeData} from '../actions/Registrations'
 import { connect } from 'react-redux'
@@ -17,10 +18,8 @@ function AddEmployees({AddEmployeeAuthentication,AddEmployeeData,user_auth_creat
     salary: 0,
     password: '',
     re_password:'',
-    
-    
-  })
-  const [postImage,setPostImage]=React.useState(null);
+});
+const [postImage,setPostImage]=React.useState(null);
   
   const handleChange=(e)=>{
     if ([e.target.name !=='employee_image']){
@@ -33,32 +32,31 @@ function AddEmployees({AddEmployeeAuthentication,AddEmployeeData,user_auth_creat
     if ([e.target.name]=='employee_image'){
       setPostImage(
         {
-          employee_image: e.target.files,
+          image: e.target.files,
         }
       )
     }
+ 
     
   }
   //const   {First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image }=newEmployee
   const {email,password,re_password}=newEmployee
-  const {First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary,employee_image }=newEmployee
+  const {First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary }=newEmployee
   const HandleSubmit = (e) => {
     e.preventDefault();
-  
-
-      AddEmployeeAuthentication(email, password, re_password);
-      console.log("back here")
-       AddEmployeeData(
-        First_name,
-        Middle_name,
-        Last_name,
-        email,
-        phoneNumber,
-        employed,
-        title,
-        department,
-        salary,
-        employee_image
+    AddEmployeeAuthentication(email, password, re_password);
+    console.log("back here")
+    AddEmployeeData(
+    First_name,
+    Middle_name,
+    Last_name,
+    email,
+    phoneNumber,
+    employed,
+    title,
+    department,
+    salary,
+    postImage.image
       );
       
      

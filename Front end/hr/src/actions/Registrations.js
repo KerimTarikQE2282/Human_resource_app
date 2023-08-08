@@ -54,15 +54,15 @@ export const AddEmployeeAuthentication = (email,password,re_password) => async (
       });
     }
   };
-export const AddEmployeeData=(First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,employee_image )=>async dispatch=>{
+export const AddEmployeeData=(First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,employeeImage )=>async dispatch=>{
  console.log("Reached here")
- console.log({email,First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary,employee_image})
+ console.log({email,First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary,employeeImage})
  const config = {
   headers: {
     'Content-Type': 'multipart/form-data',
   },
 }; 
-const employeeImageFile = await fetch(employee_image).then((response) => response.blob());
+
    const formData = new FormData();
      formData.append('First_name',First_name);
      formData.append('Middle_name',Middle_name);
@@ -73,7 +73,7 @@ const employeeImageFile = await fetch(employee_image).then((response) => respons
      formData.append('title',title);
      formData.append('department',department);
      formData.append('salary',salary);
-     formData.append('employee_image', employeeImageFile, 'image.jpg');
+     formData.append('employee_image', employeeImage[0]);
  
     //const body=JSON.stringify({email,First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary,employee_image})
    console.log('updated')
@@ -92,7 +92,7 @@ const employeeImageFile = await fetch(employee_image).then((response) => respons
       dispatch({
         type: USER_CREATE_FAIL,
       })
-      console.log(err)
+      console.log('registrations error',err)
      }
 
 
