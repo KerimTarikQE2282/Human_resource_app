@@ -173,3 +173,9 @@ margin: 50 em;
   width: 25vw;
   height: 30vh;
 }
+.UserImageMain{
+  width: 8vh;
+  border-radius: 100px;
+  position: relative;
+  left: 1vw;
+}

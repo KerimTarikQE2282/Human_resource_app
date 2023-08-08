@@ -23,11 +23,12 @@ function Welcome({user,image}) {
   //console.log("Welcome",user)
   //console.log(user?.employee_image)
 console.log('user====>',user)
-
+const view_image=`http://localhost:8000${user?.employee_image}/`
+console.log(view_image)
   return (
     <Paper className='TaskList'>
   <Typography variant='h5'>First name {user?.First_name}</Typography>
-   <img src={user?.employee_image}/>
+   <img src={view_image} className='UserImageMain'/>
  {image && <img  alt='Employee' />}
   <Typography></Typography>
     </Paper>
