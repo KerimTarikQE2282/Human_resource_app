@@ -22,16 +22,15 @@ function Welcome({user,image}) {
   }, [user]);*/
   //console.log("Welcome",user)
   //console.log(user?.employee_image)
-console.log(props)
+console.log('user====>',user)
 
   return (
     <Paper className='TaskList'>
   <Typography variant='h5'>First name {user?.First_name}</Typography>
-   <img src={`http://localhost:8000${image}/`}></img>
+   <img src={user?.employee_image}/>
  {image && <img  alt='Employee' />}
   <Typography></Typography>
-     
-     </Paper>
+    </Paper>
   )
 }
 const mapStateToProps = state =>({

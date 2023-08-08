@@ -37,22 +37,14 @@ from django.http import HttpResponse
 
 class Employee_Detail(APIView):
     permission_classes = [AllowAny]
-
+    parser_classes = [MultiPartParser, FormParser] 
     def get(self, request, email, format=None):
-        try:
-            employee = Employee.objects.get(email=email)
-        except Employee.DoesNotExist:
-            return Response({'error': 'Employee not found'}, status=status.HTTP_404_NOT_FOUND)
+       Emp=Employee.objects.get(email=email)
+       
+       serializedEmployee=EmployeeSerializer(Emp,many=False)
+       print('this employee', serializedEmployee.data)
+       return Response(serializedEmployee.data)
 
-        if employee.employee_image:
-            image_path = employee.employee_image.path
-
-            with open(image_path, 'rb') as f:
-                image_data = f.read()
-
-            return HttpResponse(image_data, content_type='image/jpeg')
-
-        return Response({'error': 'Employee image not found'}, status=status.HTTP_404_NOT_FOUND)
 
 
 # @api_view(['POST'])
@@ -70,7 +62,7 @@ class Create_Employee (APIView):
     #permission_classes=[permissions.IsAuthenticated]
    
     permission_classes=([AllowUnauthenticated])
-
+    parser_classes = [MultiPartParser, FormParser] 
     def post(self,request,format=None):
         print(request.data) 
         serialzer=EmployeeSerializer(data=request.data)
