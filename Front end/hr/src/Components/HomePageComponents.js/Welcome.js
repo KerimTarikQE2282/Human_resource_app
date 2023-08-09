@@ -26,10 +26,14 @@ console.log('user====>',user)
 const view_image=`http://localhost:8000${user?.employee_image}/`
 console.log(view_image)
   return (
-    <Paper className='TaskList'>
-  <Typography variant='h5'>First name {user?.First_name}</Typography>
+    <Paper className='Welcome' elevation={5}>
+  
    <img src={view_image} className='UserImageMain'/>
- {image && <img  alt='Employee' />}
+   <Typography variant='h5'>Welcome {user?.First_name} {user?.Middle_name}</Typography>
+   
+
+ 
+ 
   <Typography></Typography>
     </Paper>
   )

@@ -3,7 +3,7 @@ import React from 'react'
 
 function TaskList() {
   return (
-    <Paper className='TaskList'>
+    <Paper className='TaskList' elevation={5}>
    <Typography variant='h5'> Task lists</Typography>
     
     </Paper>

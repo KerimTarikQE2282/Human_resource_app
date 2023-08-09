@@ -18,7 +18,7 @@ code {
   margin-left: 2vw;
 }
 .NavBar{
-  width:88vw;
+ width: 83vw;
 }
 .LoginMain p{
   position: relative;
@@ -166,12 +166,30 @@ top: 30vh;
 left: 35%;
 
 }
+.HomePage{
+  display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+position: relative;
+right: 2em;
+bottom: 2em;
+
+}
+.HomePage div{
+  
+  width: 30vw;
+  height: 30vh;
+  padding: 2em;
+  margin: 2em;
+  border-radius: 20px;
+
+ 
+}
 .HomePage p{
 margin: 50 em;
-}
-.TaskList{
-  width: 25vw;
-  height: 30vh;
+width: 30vw;
+height: 30vh;
+padding: 2em;
 }
 .UserImageMain{
   width: 8vh;
@@ -179,3 +197,11 @@ margin: 50 em;
   position: relative;
   left: 1vw;
 }
+
+.Welcome h5{
+  position: relative;
+  left: 4em;
+  bottom: 3em;
+  font-family: 'REM', sans-serif;
+}
+
