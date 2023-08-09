@@ -166,6 +166,7 @@ top: 30vh;
 left: 35%;
 
 }
+
 .HomePage{
   display: flex;
 flex-direction: row;
@@ -175,7 +176,7 @@ right: 2em;
 bottom: 2em;
 
 }
-.HomePage div{
+.HomeDiv{
   
   width: 30vw;
   height: 30vh;
@@ -185,23 +186,31 @@ bottom: 2em;
 
  
 }
+.Calendar{
+  position: relative;
+  left:2em;
+  top: 3vh;
+  width: 33vw;
+  height: 37vh;
+}
+
 .HomePage p{
-margin: 50 em;
-width: 30vw;
-height: 30vh;
-padding: 2em;
-}
-.UserImageMain{
-  width: 8vh;
-  border-radius: 100px;
-  position: relative;
-  left: 1vw;
-}
-
-.Welcome h5{
-  position: relative;
-  left: 4em;
-  bottom: 3em;
-  font-family: 'REM', sans-serif;
-}
-
+  margin: 50 em;
+  width: 30vw;
+  height: 30vh;
+  padding: 2em;
+  }
+  .UserImageMain{
+    width: 8vh;
+    border-radius: 100px;
+    position: relative;
+    left: 1vw;
+  }
+  
+  .Welcome h5{
+    position: relative;
+    left: 4em;
+    bottom: 3em;
+    font-family: 'REM', sans-serif;
+  }
+  

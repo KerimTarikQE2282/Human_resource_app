@@ -3,7 +3,7 @@ import React from 'react'
 
 function NoticeBoard() {
   return (
-   <Paper className='NoticeBoard' elevation={5}>
+   <Paper className='HomeDiv' elevation={5}>
     
    </Paper>
   )

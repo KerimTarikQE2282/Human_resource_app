@@ -2,7 +2,7 @@ import React from 'react'
 
 function userStats() {
   return (
-    <div>
+    <div className='HomeDiv'>
       <h1>your stats</h1>
     </div>
   )

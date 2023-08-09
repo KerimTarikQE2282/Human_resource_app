@@ -1,20 +1,15 @@
-import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
+import * as React from 'react';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { Paper } from '@mui/material';
 
-export default function BasicDatePicker() {
-  const [value, setValue] = useState(null);
-
+export default function BasicDateCalendar() {
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
-        label="Date"
-        value={value}
-        onChange={setValue}
-        renderInput={(params) => <TextField {...params} />}
-      />
+    <Paper className='Calendar' elevation={5}>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DateCalendar />
     </LocalizationProvider>
+    </Paper>
   );
 }

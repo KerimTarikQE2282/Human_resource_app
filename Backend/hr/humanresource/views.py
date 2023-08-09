@@ -19,6 +19,7 @@ from rest_framework.permissions import AllowAny
 from django.views.decorators.csrf import csrf_exempt
 from .models import Employee
 from rest_framework.permissions import BasePermission
+from django.http import HttpResponse
 # Create your views here.
 class AllowUnauthenticated(BasePermission):
     def has_permission(self, request, view):
@@ -30,10 +31,11 @@ def Employee_list(request):
     Serialized_employee=EmployeeSerializer(Employees,many=True)
     return Response(Serialized_employee.data)
 
+#class Title(APIView):
 
 
 
-from django.http import HttpResponse
+
 
 class Employee_Detail(APIView):
     permission_classes = [AllowAny]
