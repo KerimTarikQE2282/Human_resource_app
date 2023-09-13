@@ -3,6 +3,7 @@ import React from 'react'
 import { reset_password } from '../../actions/auth'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
+import forgotPassword from '../../Images/forgotPassword.jpg'
 function ResetPassword({reset_password}) {
   const navigate=useNavigate()
   const [RequestSent,setRequestSent]=React.useState(false)
@@ -22,6 +23,7 @@ function ResetPassword({reset_password}) {
   return (
     <div>
     <Paper className='ResetPassword' elevation={12}>
+      <img src={forgotPassword}/>
       <Typography
       variant='h5'
       sx={{ fontWeight: 'bold',  }}

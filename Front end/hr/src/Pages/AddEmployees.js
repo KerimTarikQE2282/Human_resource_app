@@ -106,8 +106,7 @@ const [postImage,setPostImage]=React.useState(null);
             value={newEmployee.email}
             onChange={handleChange}
             />
-            </div>
-            <div>
+           
             <br/>
             <TextField
             placeholder='Phone number'
@@ -115,7 +114,8 @@ const [postImage,setPostImage]=React.useState(null);
             value={newEmployee.phoneNumber}
             onChange={handleChange}
             />
-          
+             </div>
+            <div>
             <br/>
             <TextField
             placeholder='Title'
