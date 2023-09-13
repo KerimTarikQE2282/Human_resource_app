@@ -62,6 +62,7 @@ class Employee(models.Model):
     salary = models.IntegerField(null=True,default=0)
     employee_image=models.ImageField(_("Image"), upload_to=upload_employee_images_to,default='posts/default.jpg')
     contractual_agreement=models.ImageField(_("Image"), upload_to=upload_employee_contractual_images_to,default='posts/default.jpg' )
+    EmployedBy=models.ForeignKey('self',on_delete=models.CASCADE,blank=True,null=True)
 
     def get_full_name(self):
         return f"{self.First_name} {self.Middle_name} {self.Last_name}"
