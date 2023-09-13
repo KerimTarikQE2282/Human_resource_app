@@ -74,6 +74,7 @@ export const AddEmployeeData=(First_name, Middle_name,Last_name,email,phoneNumbe
      formData.append('department',department);
      formData.append('salary',salary);
      formData.append('employee_image', employeeImage[0]);
+     
  
     //const body=JSON.stringify({email,First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary,employee_image})
    console.log('updated')

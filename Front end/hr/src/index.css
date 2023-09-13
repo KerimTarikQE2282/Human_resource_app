@@ -79,15 +79,15 @@ margin-top: 4%;
   width: 90vw;
   height: 100vh;
   position: absolute;
-  top: 7vh;
-  right: 0.5vw;
+  top: 8.5vh;
+  left: 18vw;
   background-image: url('./Images/13900618_5291450.jpg');
   background-size: cover;
 }
 .EmployeeHire{
   position: absolute;
   left: 2vw;
-  top: 5vh;
+  top: 2vh;
   
   background-position: 500px 20px;
 
@@ -183,7 +183,7 @@ flex-direction: row;
 flex-wrap: wrap;
 position: relative;
 right: 2em;
-bottom: 2em;
+top:10vh
 
 }
 .HomeDiv{

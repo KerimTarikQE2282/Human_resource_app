@@ -5,7 +5,7 @@ import {AddEmployeeAuthentication,AddEmployeeData} from '../actions/Registration
 import { connect } from 'react-redux'
 
 
-function AddEmployees({AddEmployeeAuthentication,AddEmployeeData,user_auth_created}) {
+function AddEmployees({AddEmployeeAuthentication,AddEmployeeData,user,user_auth_created}) {
   const [newEmployee,setnewEmployee]=React.useState({
     First_name: '',
     Middle_name: '',
@@ -20,7 +20,7 @@ function AddEmployees({AddEmployeeAuthentication,AddEmployeeData,user_auth_creat
     re_password:'',
 });
 const [postImage,setPostImage]=React.useState(null);
-  
+console.log('here is the user!!!!!!!!',user) 
   const handleChange=(e)=>{
     if ([e.target.name !=='employee_image']){
       setnewEmployee(
@@ -56,9 +56,11 @@ const [postImage,setPostImage]=React.useState(null);
     title,
     department,
     salary,
-    postImage.image
+    postImage.image,
+    user
       );
       
+    
      
     
  
@@ -165,7 +167,7 @@ const [postImage,setPostImage]=React.useState(null);
 }
 const mapStateToProps = state =>({
   user_auth_created:  state.Registrations.Registrations,
-  
+ user:state.auth.user
 });
 
-export default connect(mapStateToProps,{AddEmployeeData,AddEmployeeAuthentication})(AddEmployees)
+export default connect(mapStateToProps,{AddEmployeeData,AddEmployeeAuthentication,})(AddEmployees)

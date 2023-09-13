@@ -16,18 +16,18 @@ import activateAcount from './Pages/Auth_pages/activate';
 
 function App() {
   const location = useLocation();
-
+  const isResetPasswordConfirmPage = location.pathname.startsWith('/password/reset/confirm/');
   return (
     <Provider store={store}>
       <div>
-        {location.pathname === '/' || location.pathname === '/ResetPassword' || location.pathname === '/password/reset/confirm/:uid/:token' ? (
+        {location.pathname === '/' || location.pathname === '/ResetPassword' || isResetPasswordConfirmPage ? (
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/ResetPassword" element={<ResetPassword />} />
               <Route
                 path="/password/reset/confirm/:uid/:token"
                 element={<ResetPasswordConfirm />}
-                Component={ResetPasswordConfirm}
+                
               />
           </Routes>
         ) : (

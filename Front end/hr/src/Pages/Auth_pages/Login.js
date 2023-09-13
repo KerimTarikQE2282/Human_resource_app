@@ -32,7 +32,7 @@ if (isAuthenticated){
   console.log('is authenticated',isAuthenticated)
  return  <Navigate replace to='/HomePage'/>
 }
-console.log(user)
+console.log("is authenticated",isAuthenticated)
 
   return (
     <div className='LoginMain'>
@@ -47,6 +47,7 @@ console.log(user)
               variant='h6'
               className='logo'
               >Human Resourceerer</Typography>
+                {isAuthenticated==false && <h3>wrong authentication</h3> }
                 <TextField 
                 onChange={onChange} 
                 placeholder='Email'
@@ -70,7 +71,7 @@ console.log(user)
               <p>
                 Forgot your password <Link to='/ResetPassword'>Reset Password</Link>
               </p>
-              
+            
             </Paper>
           </div>
         </div>
