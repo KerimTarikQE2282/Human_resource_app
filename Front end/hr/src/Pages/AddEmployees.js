@@ -20,7 +20,7 @@ function AddEmployees({AddEmployeeAuthentication,AddEmployeeData,user,user_auth_
     re_password:'',
 });
 const [postImage,setPostImage]=React.useState(null);
-console.log('here is the user!!!!!!!!',user) 
+const EmployedBy=user.email 
   const handleChange=(e)=>{
     if ([e.target.name !=='employee_image']){
       setnewEmployee(
@@ -57,7 +57,7 @@ console.log('here is the user!!!!!!!!',user)
     department,
     salary,
     postImage.image,
-    user
+    EmployedBy
       );
       
     
