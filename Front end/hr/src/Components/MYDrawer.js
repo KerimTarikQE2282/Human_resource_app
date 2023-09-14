@@ -3,6 +3,8 @@ import { makeStyles } from '@mui/styles';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import React from 'react'
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import { useNavigate } from 'react-router-dom';
 
 export const drawerWidth=240
 const useStyles=makeStyles({
@@ -17,21 +19,24 @@ const useStyles=makeStyles({
 })
 
 function MYDrawer() {
-    const hitory=useHistory()
+        const navigate=useNavigate()
     const AddEmployee=()=>{
-        history.push("/your-page")
+        navigate('/AddEmployee')
+    }
+    const EmployeeList=()=>{
+        navigate('/ListEmployees')
     }
     const drawer=(
         <div className='innerdrawer'>
             
                 <List>
-                    hellodmnwakldnklwandknwakldklwadknwaklndwklandk;wank;dn3wqkpdn3qwk
+                    
     
     <ListItem className='Lists'  disablePadding>
-        <ListItemButton onClick={AddEmployee}>
+        <ListItemButton onClick={()=>AddEmployee()}>
             <ListItemIcon/>
                 <AddIcon/>
-                <ListItemText>hello</ListItemText>
+                <ListItemText>Add Employee</ListItemText>
             
            </ListItemButton>
     
@@ -40,10 +45,19 @@ function MYDrawer() {
     <ListItemButton on>
             <ListItemIcon/>
                 <RemoveIcon/>
-                <ListItemText>hello</ListItemText>
+                <ListItemText>Fire an Employee</ListItemText>
+            
+           </ListItemButton>
+           </ListItem >
+           <ListItem disablePadding>
+           <ListItemButton onClick={()=>EmployeeList()}>
+            <ListItemIcon/>
+                <FormatListBulletedIcon/>
+                <ListItemText>List Employees</ListItemText>
             
            </ListItemButton>
            </ListItem>
+           
                 </List>
            
         </div>

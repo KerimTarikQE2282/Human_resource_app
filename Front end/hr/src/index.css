@@ -232,3 +232,17 @@ top:10vh
     display: flex;
     flex-direction: row;
   }
+  .EmployeeList{
+    position: relative;
+    top: 10vh;
+    display: inline-block;
+    
+    
+  }
+  .EmployeeList div{
+    margin: 10px;
+  }
+  .EmployeeList img{
+    width: 5vw;
+    height: 10vh;
+  }

@@ -14,6 +14,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser,FormParser
 from rest_framework import permissions
+from rest_framework.permissions import IsAuthenticated
 
 from rest_framework.permissions import AllowAny
 from django.views.decorators.csrf import csrf_exempt
@@ -24,18 +25,20 @@ from django.http import HttpResponse
 class AllowUnauthenticated(BasePermission):
     def has_permission(self, request, view):
         return True
-@api_view(['Get'])
-@permission_classes([AllowUnauthenticated])
-def Employee_list(request):
-    Employees=Employee.objects.all()
-    Serialized_employee=EmployeeSerializer(Employees,many=True)
-    return Response(Serialized_employee.data)
+
+
 
 #class Title(APIView):
 
 
 
-
+class List_Employees(APIView):
+    permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser] 
+    def get(self, request,format=None):
+        Employees=Employee.objects.all()
+        Serialized_employees=EmployeeSerializer(Employees,many=True)
+        return Response(Serialized_employees.data)
 
 class Employee_Detail(APIView):
     permission_classes = [AllowAny]
@@ -73,12 +76,6 @@ class Create_Employee (APIView):
             return Response(serialzer.data,status=status.HTTP_200_OK)
         else:
             return Response(serialzer.data,status=status.HTTP_400_BAD_REQUEST)
-
-
-            
-
-
-
 
 
 @api_view(['POST'])

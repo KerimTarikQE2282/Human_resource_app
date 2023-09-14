@@ -29,7 +29,9 @@ function NavBar({ logout, isAuthenticated }) {
       </Button>
     );
   };
-
+  function GoHome(){
+    navigate('/')
+  }
   const handleLogout = () => {
     
     logout();
@@ -42,7 +44,7 @@ function NavBar({ logout, isAuthenticated }) {
         <AppBar position='static'>
           <Toolbar>
             <IconButton size='large' edge='start' color='inherit' aria-label='menu' sx={{ mr: 20 }}></IconButton>
-            <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
+            <Typography variant='h6' component='div' sx={{ flexGrow: 1 }} onClick={()=>GoHome()}>
               HR system
             </Typography>
             {isAuthenticated ? authLinks() : guestLinks()}

@@ -13,7 +13,7 @@ import ResetPasswordConfirm from './Pages/Auth_pages/ResetPasswordConfirm';
 import Signup from './Pages/Auth_pages/Signup';
 import ViewEmployees from './Pages/ViewEmployee';
 import activateAcount from './Pages/Auth_pages/activate';
-
+import ListEmployees from './Pages/ListEmployees';
 function App() {
   const location = useLocation();
   const isResetPasswordConfirmPage = location.pathname.startsWith('/password/reset/confirm/');
@@ -41,6 +41,8 @@ function App() {
               <Route path="/Fire/:id" element={<FireEmployee />} />
               <Route path="/AddEmployee" element={<AddEmployee/>} />
               <Route path="/HomePage" element={<HomePage />} />
+              <Route path="/ListEmployees" element={<ListEmployees />} />
+              
             </Routes>
           </Layout>
         )}
