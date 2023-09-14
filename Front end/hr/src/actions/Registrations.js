@@ -54,7 +54,7 @@ export const AddEmployeeAuthentication = (email,password,re_password) => async (
       });
     }
   };
-export const AddEmployeeData=(First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,employeeImage )=>async dispatch=>{
+export const AddEmployeeData=(First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,employeeImage,EmployedBy )=>async dispatch=>{
  console.log("Reached here")
  console.log({email,First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary,employeeImage})
  const config = {
@@ -74,6 +74,7 @@ export const AddEmployeeData=(First_name, Middle_name,Last_name,email,phoneNumbe
      formData.append('department',department);
      formData.append('salary',salary);
      formData.append('employee_image', employeeImage[0]);
+     formData.append('EmployedBy',EmployedBy)
      
  
     //const body=JSON.stringify({email,First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary,employee_image})
