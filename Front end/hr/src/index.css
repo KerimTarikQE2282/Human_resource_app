@@ -241,8 +241,37 @@ top:10vh
   }
   .EmployeeList div{
     margin: 10px;
+    width: 20vw;
+    height: 25vh;
+    transition: transform 0.5s ease;
+  }
+  .EmployeeList div:hover{
+    
+    transform: scale(1.2);
+   
   }
   .EmployeeList img{
-    width: 5vw;
-    height: 10vh;
+    width: 3vw;
+    height: 6vh;
+    border-radius: 50px;
+    position: relative;
+    top: 2vh;
+    left: 1vw;
+  }
+  .userListName{
+    position: relative;
+    left: 5.5vw;
+    bottom: 3vh;
+    font-weight: 500;
+   
+
+  }
+  .EmployeeListEmail{
+    position: relative;
+    left: 5.5vw;
+    bottom: 2.5vh;
+   
+  }
+  .EmployeeList hr{
+    height: 0.00005px;
   }

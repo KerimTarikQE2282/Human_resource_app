@@ -1,9 +1,12 @@
-import { Paper, Typography } from '@mui/material';
+import { Divider, Paper, Typography } from '@mui/material';
 import axios from 'axios'
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
+import EmployeeDetail from './EmployeeDetail';
 
 function ListEmployees() {
     const [Employees,setEmployees]=React.useState([])
+    const navigate=useNavigate()
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -20,19 +23,23 @@ function ListEmployees() {
             // Handle error
           });
     },[])
+    const handleClick=(email)=>{
+        EmployeeDetail(email)
+        navigate('/EmployeeDetail')
+    }
     console.log(Employees)
     const EmployeesCards = Employees.map((emp) => {
         return (
             <div className='EmployeeList'>
-            <Paper elevation={15}>
+            <Paper elevation={15} onClick={()=>handleClick(emp.email)}>
             <img src={`http://127.0.0.1:8000${emp.employee_image}`}  />
-                <Typography key={emp.id}>name: {emp.First_name}</Typography>
-                <Typography key={emp.id}>name: {emp.Middle_name}</Typography>
-                <Typography key={emp.id}>name: {emp.Last_name}</Typography>
-                <Typography key={emp.id}>name: {emp.email}</Typography>
                 
-
-                Middle_name
+                
+                <Typography key={emp.id} className='userListName' >{`${emp.First_name} ${emp.Middle_name}`}</Typography>
+                <Typography key={emp.id} className='EmployeeListEmail'> {emp.email}</Typography>
+               <Divider/>
+                <Typography>{emp.phoneNumber}</Typography>
+                <Typography>{emp.department}</Typography>
             </Paper>
             </div>
           
