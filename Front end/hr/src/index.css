@@ -232,6 +232,22 @@ top:10vh
     display: flex;
     flex-direction: row;
   }
+  .Lists svg{
+    position: relative;
+    right:2em;
+  }
+  .Lists span{
+    position: relative;
+    right:2.5em;
+  }
+  .innerinnerdrawer{
+    position: relative;
+    bottom: 15vh;
+  }
+  .innerdrawer li{
+    margin-top: 1vh;
+  }
+
   .EmployeeList{
     position: relative;
     top: 10vh;
@@ -240,7 +256,7 @@ top:10vh
     
   }
   .EmployeeList div{
-    margin: 10px;
+    margin: 0.5em;
     margin-right: 3vw;
     width: 20vw;
     height: 25vh;
@@ -249,7 +265,7 @@ top:10vh
   }
   .EmployeeList div:hover{
     
-    transform: scale(1.2);
+    transform: scale(1.1);
 
    
   }
@@ -287,4 +303,13 @@ top:10vh
     position: relative;
     bottom: 4vh;
     left: 3vw;
+  }
+  .EmployeeDetailDIv{
+    margin-top: 10vh;
+    width: 70vw;
+    height: 70vh;
+    padding: 2em;
+  }
+  .EmployeeDetailDIv img{
+    width: 20vw;
   }

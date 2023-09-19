@@ -34,7 +34,7 @@ function ListEmployees() {
     const EmployeesCards = Employees.map((emp) => {
         return (
             <div elevation={10} className='EmployeeList'>
-            <Paper elevation={15} onClick={()=>handleClick(emp.email)}>
+            <Paper elevation={5} onClick={()=>handleClick(emp.email)}>
             <img src={`http://127.0.0.1:8000${emp.employee_image}`}  />
                 
                 

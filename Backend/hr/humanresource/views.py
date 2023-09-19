@@ -15,7 +15,7 @@ from rest_framework import status
 from rest_framework.parsers import MultiPartParser,FormParser
 from rest_framework import permissions
 from rest_framework.permissions import IsAuthenticated
-
+from .serializers import Task_serializer
 from rest_framework.permissions import AllowAny
 from django.views.decorators.csrf import csrf_exempt
 from .models import Employee
@@ -76,6 +76,19 @@ class Create_Employee (APIView):
             return Response(serialzer.data,status=status.HTTP_200_OK)
         else:
             return Response(serialzer.data,status=status.HTTP_400_BAD_REQUEST)
+class Create_Task(APIView):
+    permission_classes = [AllowAny]
+    def post(self,request,format=None):
+        serializedTask=Task_serializer(data=request.data)
+        if serializedTask.is_valid():
+            serializedTask.save()
+            return Response(serializedTask.data,status=status.HTTP_200_OK)
+        else:
+             return Response(serializedTask.data,status=status.HTTP_400_BAD_REQUEST)
+class Get_Employee_Task(APIView):
+    permission_classes = [AllowAny]
+    def get(slef,request,email,format=None):
+        Tasks=Tasks.objects.all()
 
 
 @api_view(['POST'])
@@ -87,7 +100,7 @@ def Update_employee(request,email):
     return Response(Update_employee.data)
 
 
-   
+
 
 
 

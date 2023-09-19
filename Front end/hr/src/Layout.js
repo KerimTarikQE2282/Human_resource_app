@@ -1,26 +1,33 @@
-import React , {useEffect} from 'react'
-import NavBar from './Components/NavBar'
-import {connect} from 'react-redux'
-import {checkAuthenticated , load_user} from './actions/auth'
-import Drawer from './Components/MYDrawer'
-function Layout(props) {
-useEffect(()=>
-{
-props.checkAuthenticated();
-props.load_user();
-}
-,[]
-)
+import React, { useEffect } from 'react';
+import NavBar from './Components/NavBar';
+import { connect } from 'react-redux';
+import { checkAuthenticated, load_user } from './actions/auth';
+import Drawer from './Components/MYDrawer';
+
+function Layout({ checkAuthenticated, load_user, currentUser, children }) {
+  useEffect(() => {
+    checkAuthenticated();
+    load_user();
+  }, [checkAuthenticated, load_user]);
+
+  console.log('fromLaytout===>',currentUser);
+
   return (
-
+    
     <div className='Layout'>
-      <div><Drawer/></div>
-      <div><NavBar/>
-      <div className='layoutChildren'>{props.children}</div>
+      <div>
+       {currentUser?.title == "dwadwa" && <Drawer />}
+      </div>
+      <div>
+        <NavBar />
+        <div className='layoutChildren'>{children}</div>
+      </div>
     </div>
-       
-    </div>
-  )
+  );
 }
 
-export default connect(null,{checkAuthenticated,load_user})(Layout)
+const mapStateToProps = (state) => ({
+  currentUser: state.auth.user,
+});
+
+export default connect(mapStateToProps, { checkAuthenticated, load_user })(Layout);

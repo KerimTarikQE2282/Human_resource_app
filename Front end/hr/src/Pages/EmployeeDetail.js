@@ -1,3 +1,4 @@
+import { Paper } from '@mui/material';
 import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -21,21 +22,22 @@ React.useEffect(()=>{
   
   console.log(Employee)
   return (
-    <div>
-    <img src={Employee.employee_image}></img>
-    <h5>{Employee.First_name}</h5>
-    <h5>{Employee.Middle_name}</h5>
-    <h5>{Employee.Last_name}</h5>
-    <h5>{Employee.email}</h5>
-    <h5>{Employee.department}</h5>
+    <Paper elevation={10} className='EmployeeDetailDIv'>
+    {/* <img  src={`http://127.0.0.1:8000${Employee.employee_image}`}/> */}
+    <h5>{Employee?.First_name}</h5>
+    
+    <h5>{Employee?.Middle_name}</h5>
+    <h5>{Employee?.Last_name}</h5>
+    <h5>{Employee?.email}</h5>
+    <h5>{Employee?.department}</h5>
     <h5>​
-{Employee.phoneNumber}</h5>
+{Employee?.phoneNumber}</h5>
     <h5>​
-{Employee.salary}</h5>
-    <h5>{Employee.title}</h5>
+{Employee?.salary}</h5>
+    <h5>{Employee?.title}</h5>
  
       
-    </div>
+    </Paper>
   );
 }
 

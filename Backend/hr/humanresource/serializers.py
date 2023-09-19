@@ -2,6 +2,7 @@ from djoser.serializers import UserCreateSerializer
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import Employee
+from .models import Tasks
 from django.contrib.auth.models import User
 
 
@@ -25,3 +26,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
         model =Employee
         fields='__all__'
 
+class Task_serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Tasks
+        fields='__all__'

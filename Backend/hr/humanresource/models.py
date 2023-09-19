@@ -75,7 +75,8 @@ class Tasks(models.Model):
     TaskDetail=models.CharField(max_length=5000,blank=False)
     SetTo=models.CharField(max_length=200,blank=False)
 
-    
+class Roles(models.Model):
+    RoleName=models.CharField(max_length=255)    
 class Referer(models.Model):
     First_name=models.CharField(max_length=55,default='')
     Middle_name=models.CharField(max_length=55,default='')
