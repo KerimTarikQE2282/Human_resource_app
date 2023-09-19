@@ -49,7 +49,8 @@ def upload_employee_contractual_images_to(instance,filename):
     return 'posts/employee_contractual_images/{filename}'.format(filename=filename)
 def upload_Referer_images_to(instance,filename):
     return 'posts/Referer_images/{filename}'.format(filename=filename)
-
+class Role(models.Model):
+    RoleName=models.CharField(max_length=255)
 class Employee(models.Model):
     email = models.EmailField(max_length=200, unique=True)
     First_name = models.CharField(max_length=55,default='')
@@ -57,12 +58,12 @@ class Employee(models.Model):
     Last_name=models.CharField(max_length=55,default='')
     phoneNumber = models.CharField(max_length=20,default='')
     employed = models.BooleanField(default=True)
-    title = models.CharField(max_length=200 ,default='')
     department = models.CharField(max_length=200,default='')
     salary = models.IntegerField(null=True,default=0)
     employee_image=models.ImageField(_("Image"), upload_to=upload_employee_images_to,default='posts/default.jpg')
     contractual_agreement=models.ImageField(_("Image"), upload_to=upload_employee_contractual_images_to,default='posts/default.jpg' )
     EmployedBy=models.ForeignKey('self',on_delete=models.CASCADE,blank=True,null=True)
+    Role=models.ManyToManyField(Role)
 
     def get_full_name(self):
         return f"{self.First_name} {self.Middle_name} {self.Last_name}"

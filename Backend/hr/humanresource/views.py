@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from .serializers import UserSerializer
 from .serializers import EmployeeSerializer
+from .serializers import Role_serializer
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser,FormParser
@@ -19,6 +20,7 @@ from .serializers import Task_serializer
 from rest_framework.permissions import AllowAny
 from django.views.decorators.csrf import csrf_exempt
 from .models import Employee
+from .models import Role
 from rest_framework.permissions import BasePermission
 from django.http import HttpResponse
 # Create your views here.
@@ -85,6 +87,21 @@ class Create_Task(APIView):
             return Response(serializedTask.data,status=status.HTTP_200_OK)
         else:
              return Response(serializedTask.data,status=status.HTTP_400_BAD_REQUEST)
+    
+
+class Role_view(APIView):
+    permission_classes = [AllowAny]
+    def post(self,request,format=None):
+        Serialized_Role=Role_serializer(data=request.data)
+        if Serialized_Role.is_valid():
+            Serialized_Role.save()
+            return Response(Serialized_Role.data,status=status.HTTP_200_OK)
+        else:
+            return Response(Serialized_Role.data,status=status.HTTP_400_BAD_REQUEST)
+    def get(self, request,format=None):
+        Roles=Role.objects.all()
+        Serialized_Roles=Role_serializer(Roles,many=True)
+        return Response(Serialized_Roles.data)
 class Get_Employee_Task(APIView):
     permission_classes = [AllowAny]
     def get(slef,request,email,format=None):
@@ -98,8 +115,6 @@ def Update_employee(request,email):
     if Update_employee.is_valid():
         Update_employee.save()
     return Response(Update_employee.data)
-
-
 
 
 
