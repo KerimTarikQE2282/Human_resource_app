@@ -30,16 +30,16 @@ function ListEmployees() {
     console.log(Employees)
     const EmployeesCards = Employees.map((emp) => {
         return (
-            <div className='EmployeeList'>
+            <div elevation={10} className='EmployeeList'>
             <Paper elevation={15} onClick={()=>handleClick(emp.email)}>
             <img src={`http://127.0.0.1:8000${emp.employee_image}`}  />
                 
                 
-                <Typography key={emp.id} className='userListName' >{`${emp.First_name} ${emp.Middle_name}`}</Typography>
-                <Typography key={emp.id} className='EmployeeListEmail'> {emp.email}</Typography>
-               <Divider/>
-                <Typography>{emp.phoneNumber}</Typography>
-                <Typography>{emp.department}</Typography>
+                <h3 key={emp.id} className='userListName' >{`${emp.First_name} ${emp.Middle_name}`}</h3>
+                <p key={emp.id} className='EmployeeListEmail'> {emp.email}</p>
+              
+                <Typography className='EmpphoneNumber'>{emp.phoneNumber}</Typography>
+                <Typography className='Empdepartment'>Role:-{emp.department}</Typography>
             </Paper>
             </div>
           
