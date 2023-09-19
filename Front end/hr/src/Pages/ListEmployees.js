@@ -3,7 +3,8 @@ import axios from 'axios'
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import EmployeeDetail from './EmployeeDetail';
-
+import { MyEmployee } from '../actions/MyEmployee';
+import { connect, useDispatch } from 'react-redux';
 function ListEmployees() {
     const [Employees,setEmployees]=React.useState([])
     const navigate=useNavigate()
@@ -23,8 +24,10 @@ function ListEmployees() {
             // Handle error
           });
     },[])
+    const dispatch=useDispatch()
     const handleClick=(email)=>{
-        EmployeeDetail(email)
+       
+        dispatch(MyEmployee(email))
         navigate('/EmployeeDetail')
     }
     console.log(Employees)
@@ -53,4 +56,7 @@ function ListEmployees() {
   )
 }
 
-export default ListEmployees
+const mapStateToProps = state =>({
+   
+});
+export default connect(mapStateToProps, {MyEmployee})(ListEmployees);

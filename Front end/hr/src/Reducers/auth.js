@@ -25,7 +25,7 @@ user:null,
 
 export default function(state=initialState,action){
     const {type,payload}=action
-    console.log('ressssssssss===>',payload)
+    
     switch(type){
         case AUTHENTICATED_SUCCESS:
             return{
