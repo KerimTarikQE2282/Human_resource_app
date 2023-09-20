@@ -1,8 +1,9 @@
-import { Button, Paper, TextField, Typography } from '@mui/material'
+import { Button, InputLabel, MenuItem, Paper, Select, TextField, Typography } from '@mui/material'
 
 import React from 'react'
 import {AddEmployeeAuthentication,AddEmployeeData} from '../actions/Registrations'
 import { connect } from 'react-redux'
+import axios from 'axios';
 
 
 function AddEmployees({AddEmployeeAuthentication,AddEmployeeData,user,user_auth_created}) {
@@ -16,6 +17,7 @@ function AddEmployees({AddEmployeeAuthentication,AddEmployeeData,user,user_auth_
     title: '',
     department: '',
     salary: 0,
+    Employee_Role:[],
     password: '',
     re_password:'',
 });
@@ -39,6 +41,24 @@ const EmployedBy=user.email
  
     
   }
+  const [responseRoles, setResponseRoles] = React.useState([]);
+  React.useEffect(() => {
+    axios.get('http://localhost:8000/api/Role/')
+      .then(res => {
+        const availableRoles = res.data;
+        setResponseRoles(availableRoles);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  
+const roles = responseRoles.map(res => (
+  <MenuItem key={res.id} value={res.RoleName}>{res.RoleName}</MenuItem>
+));
+
+console.log('roles====>',roles);
   //const   {First_name, Middle_name,Last_name,email,phoneNumber,employed,title,department,salary,password,re_password,employee_image }=newEmployee
   const {email,password,re_password}=newEmployee
   const {First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary }=newEmployee
@@ -67,7 +87,7 @@ const EmployedBy=user.email
   };
 
      
-      
+      console.log(newEmployee)
   return (
     
     <div className='EmployeeHireGeneral' sx={{ position: 'relative', top: '10px' }}>
@@ -150,6 +170,18 @@ const EmployedBy=user.email
   onChange={handleChange}
   type='file'
 />
+<InputLabel id="demo-simple-select-label">Role</InputLabel>
+
+ <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={newEmployee.Employee_Role}
+    label="Role"
+    onChange={handleChange}
+    multiple
+  >
+    {roles}
+  </Select>
         <Button
        variant='contained' 
        type='submit'
