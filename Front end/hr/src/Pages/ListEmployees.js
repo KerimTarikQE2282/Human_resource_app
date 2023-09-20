@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import EmployeeDetail from './EmployeeDetail';
 import { MyEmployee } from '../actions/MyEmployee';
 import { connect, useDispatch } from 'react-redux';
-function ListEmployees() {
+function ListEmployees({user}) {
     const [Employees,setEmployees]=React.useState([])
     const navigate=useNavigate()
     const config = {
@@ -15,8 +15,9 @@ function ListEmployees() {
         
         }
     }; 
+    console.log('my user======>',user.email)
     React.useEffect(()=>{
-        axios.get('http://127.0.0.1:8000/api/Employee-List/',config)
+        axios.get(`http://127.0.0.1:8000/api/Employee-List/${user.email}/`,config)
         .then((res)=>{
             setEmployees(res.data)
         })
@@ -57,6 +58,6 @@ function ListEmployees() {
 }
 
 const mapStateToProps = state =>({
-   
+    user:state.auth.user
 });
 export default connect(mapStateToProps, {MyEmployee})(ListEmployees);

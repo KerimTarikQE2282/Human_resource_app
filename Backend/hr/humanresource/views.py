@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.http import JsonResponse
 from django.http import HttpResponse
 from rest_framework.decorators import api_view,permission_classes
@@ -23,7 +23,23 @@ from .models import Employee
 from .models import Role
 from rest_framework.permissions import BasePermission
 from django.http import HttpResponse
+from django.contrib.auth.decorators import permission_required
 # Create your views here.
+def role_required(role):
+    def decorator(view_func):
+       
+        def wrapper(request, currentEmployee ,*args, **kwargs):
+            
+            # if request.user.employee.role == role:
+            #     return view_func(request, *args, **kwargs)
+            # else:
+            #     return HttpResponseForbidden()  # Or any other response for unauthorized access
+            print(currentEmployee,role)
+            return view_func(request, *args, **kwargs)
+        return wrapper
+    return decorator
+
+
 class AllowUnauthenticated(BasePermission):
     def has_permission(self, request, view):
         return True
@@ -36,8 +52,10 @@ class AllowUnauthenticated(BasePermission):
 
 class List_Employees(APIView):
     permission_classes = [IsAuthenticated]
-    parser_classes = [MultiPartParser, FormParser] 
-    def get(self, request,format=None):
+   
+    @role_required('admin')
+    def get(self, request,currentEmployee,format=None):
+       
         Employees=Employee.objects.all()
         Serialized_employees=EmployeeSerializer(Employees,many=True)
         return Response(Serialized_employees.data)
@@ -45,8 +63,8 @@ class List_Employees(APIView):
 class Employee_Detail(APIView):
     permission_classes = [AllowAny]
     parser_classes = [MultiPartParser, FormParser] 
-    def get(self, request, email, format=None):
-       Emp=Employee.objects.get(email=email)
+    def get(self, request, emailDetail, format=None):
+       Emp=Employee.objects.get(email=emailDetail)
        
        serializedEmployee=EmployeeSerializer(Emp,many=False)
        print('this employee', serializedEmployee.data)
