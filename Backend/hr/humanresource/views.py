@@ -24,22 +24,37 @@ from .models import Role
 from rest_framework.permissions import BasePermission
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required
-# Create your views here.
+
 def role_required(role):
     def decorator(view_func):
        
-        def wrapper(request, currentEmployee ,*args, **kwargs):
-            
-            # if request.user.employee.role == role:
-            #     return view_func(request, *args, **kwargs)
-            # else:
-            #     return HttpResponseForbidden()  # Or any other response for unauthorized access
-            print(currentEmployee,role)
-            return view_func(request, *args, **kwargs)
+        def wrapper(request ,*args, **kwargs):
+            currentEmployee = kwargs.pop('currentEmployee', None)
+            emailDetail = kwargs.pop('emailDetail', None)
+            user=Employee.objects.get(email=currentEmployee)
+            #print('from top===>',user,'email detail===>',emailDetail)
+            print('from top==>',user.email)
+            return view_func(request,currentEmployee,emailDetail,*args, **kwargs)
         return wrapper
     return decorator
 
+from rest_framework.authentication import TokenAuthentication
 
+# def get_user_from_token(request):
+#     user = None
+#     token = request.META.get('HTTP_AUTHORIZATION')
+
+#     if token:
+#         token = token.split(' ')[1]
+
+#         token_auth = TokenAuthentication()
+
+#         try:
+#             user, _ = token_auth.authenticate_credentials(token)
+#         except:
+#             pass
+
+#     return user
 class AllowUnauthenticated(BasePermission):
     def has_permission(self, request, view):
         return True
@@ -53,9 +68,9 @@ class AllowUnauthenticated(BasePermission):
 class List_Employees(APIView):
     permission_classes = [IsAuthenticated]
    
-    @role_required('admin')
+    #@role_required('admin')
     def get(self, request,currentEmployee,format=None):
-       
+       # print(currentEmployee)
         Employees=Employee.objects.all()
         Serialized_employees=EmployeeSerializer(Employees,many=True)
         return Response(Serialized_employees.data)
@@ -63,11 +78,14 @@ class List_Employees(APIView):
 class Employee_Detail(APIView):
     permission_classes = [AllowAny]
     parser_classes = [MultiPartParser, FormParser] 
-    def get(self, request, emailDetail, format=None):
+    @role_required('admin')
+    def get(self, request ,emailDetail,currentEmployee,format=None):
+       print('from biottom',emailDetail)
+       #print('my current Employee==>',currentEmployee)
        Emp=Employee.objects.get(email=emailDetail)
-       
        serializedEmployee=EmployeeSerializer(Emp,many=False)
-       print('this employee', serializedEmployee.data)
+       #print('this employee', serializedEmployee.data)
+       
        return Response(serializedEmployee.data)
 
 
@@ -87,15 +105,21 @@ class Create_Employee (APIView):
     #permission_classes=[permissions.IsAuthenticated]
    
     permission_classes=([AllowUnauthenticated])
-    parser_classes = [MultiPartParser, FormParser] 
+    #parser_classes = [MultiPartParser, FormParser] 
     def post(self,request,format=None):
-        print(request.data) 
-        serialzer=EmployeeSerializer(data=request.data)
-        if serialzer.is_valid():
-            serialzer.save()
-            return Response(serialzer.data,status=status.HTTP_200_OK)
-        else:
-            return Response(serialzer.data,status=status.HTTP_400_BAD_REQUEST)
+            data=request.data
+       
+        # serialzer=EmployeeSerializer(data=request.data)
+        
+            newEmployee = Employee.objects.create(
+            email=data["email"],First_name=data["First_name"],Middle_name=data["Middle_name"],Last_name=data["Last_name"],phoneNumber=data["phoneNumber"],employed=data["employed"],salary=data["salary"],EmployedBy=data["EmployedBy"]
+            )  
+            newEmployee.save()
+            for userRole in request.data["Role"]:
+                role_obj=Role.objects.get(id=userRole["id"])
+                newEmployee.Role.add(role_obj)
+            
+            return Response("Done")
 class Create_Task(APIView):
     permission_classes = [AllowAny]
     def post(self,request,format=None):
@@ -122,7 +146,7 @@ class Role_view(APIView):
         return Response(Serialized_Roles.data)
 class Get_Employee_Task(APIView):
     permission_classes = [AllowAny]
-    def get(slef,request,email,format=None):
+    def get(self,request,email,format=None):
         Tasks=Tasks.objects.all()
 
 
