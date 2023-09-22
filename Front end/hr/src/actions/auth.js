@@ -66,7 +66,7 @@ import {
             const result = await axios.get(`${process.env.REACT_APP_API_URL}/auth/users/me/`, config);
             const email=result.data.email
             try {
-               const res=await axios.get(`http://127.0.0.1:8000/api/Employee_Detailed/${email}/`)
+               const res=await axios.get(`http://127.0.0.1:8000/api/Employee_Login_Detailed/${email}/`)
                
                 dispatch({
                     type: USER_LOADED_SUCCESS,

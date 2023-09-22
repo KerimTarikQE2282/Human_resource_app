@@ -17,7 +17,7 @@ function Layout({ checkAuthenticated, load_user, currentUser, children }) {
     <div className='Layout'>
       <div>
        {/* {currentUser?.title == "dwadwa" && } */}
-       <Drawer />
+       <Drawer /> 
       </div>
       <div>
         <NavBar />

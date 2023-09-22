@@ -76,26 +76,28 @@ padding: 50px;
 margin-top: 4%;
 }
 .EmployeeHireGeneral{
-  width: 90vw;
-  height: 100vh;
-  position: absolute;
-  top: 8.5vh;
-  left: 18vw;
+  width: 85vw;
+  height: 92vh;
+  position: relative;
+  
+  top: 4.8vh;
+  
   background-image: url('./Images/13900618_5291450.jpg');
   background-size: cover;
 }
+.AddEmployeePaper{
+  height: 85vh;
+}
 .EmployeeHire{
   position: absolute;
-  left: 2vw;
+  left: 4vw;
   top: 2vh;
   
   background-position: 500px 20px;
 
   
 }
-.EmployeeHire form input{
-  margin-top: 20px;
-}
+
 .sidebarLink{
   margin-top: 30vh;
 }
@@ -104,23 +106,22 @@ margin-top: 4%;
 }
 .EmployeeHireField 
 {
-  margin-left: 5vw;
+  position: relative;
+  left: 15vw;
+  top: 10vh;
   display: flex;
-  display:row
+  flex-direction: row;
+  flex-wrap: wrap;
 }
+
 .EmployeeHire{
   position: relative;
   right: 20vw;
-}
-.EmployeeHireField * *{
-  margin: 20px;
-  margin-right: 100px;
+  height: 100vh;
 }
 
-.EmployeeHire div{
-  padding: 5px;
-  
-}
+
+
 .EmployeeHire h5{
   position: relative;
   top:30px;

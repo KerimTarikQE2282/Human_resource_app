@@ -15,6 +15,7 @@ import ViewEmployees from './Pages/ViewEmployee';
 import activateAcount from './Pages/Auth_pages/activate';
 import ListEmployees from './Pages/ListEmployees';
 import EmployeeDetail from './Pages/EmployeeDetail';
+import AddRole from './Pages/AddRole';
 function App() {
   const location = useLocation();
   const isResetPasswordConfirmPage = location.pathname.startsWith('/password/reset/confirm/');
@@ -44,6 +45,7 @@ function App() {
               <Route path="/HomePage" element={<HomePage />} />
               <Route path="/ListEmployees" element={<ListEmployees />} />
               <Route path="/EmployeeDetail" element={<EmployeeDetail />} />
+              <Route path="/AddRole" element={<AddRole />} />
               
             </Routes>
           </Layout>

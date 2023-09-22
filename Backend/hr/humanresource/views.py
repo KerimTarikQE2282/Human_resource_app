@@ -25,16 +25,36 @@ from rest_framework.permissions import BasePermission
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required
 
-def role_required(role):
+def role_required(AllowedRole):
     def decorator(view_func):
        
         def wrapper(request ,*args, **kwargs):
             currentEmployee = kwargs.pop('currentEmployee', None)
             emailDetail = kwargs.pop('emailDetail', None)
-            user=Employee.objects.get(email=currentEmployee)
+            Roles=Role.objects.filter(employee=currentEmployee)
+            print(AllowedRole)
             #print('from top===>',user,'email detail===>',emailDetail)
-            print('from top==>',user.email)
-            return view_func(request,currentEmployee,emailDetail,*args, **kwargs)
+            # print('from top==>',Roles[0].RoleName)
+            checkcount=0
+            # for currentUserRoles in Roles:
+              
+            #   for checkRole in AllowedRole:
+            #     print(currentUserRoles.RoleName,checkRole)
+            #     if(currentUserRoles.RoleName==checkRole):
+
+                    #checkcount=checkcount+1
+            for userRole in Roles:
+                if userRole.RoleName in AllowedRole:
+                    print("allowed")
+                    return view_func(request,currentEmployee, *args, **kwargs)
+           
+            return HttpResponseForbidden() 
+
+           
+           
+            #return view_func(request,currentEmployee, *args, **kwargs)
+                    
+                  
         return wrapper
     return decorator
 
@@ -66,11 +86,10 @@ class AllowUnauthenticated(BasePermission):
 
 
 class List_Employees(APIView):
-    permission_classes = [IsAuthenticated]
-   
-    #@role_required('admin')
+    permission_classes = [AllowAny]
+    @role_required(['IT'])
     def get(self, request,currentEmployee,format=None):
-       # print(currentEmployee)
+        print(currentEmployee)
         Employees=Employee.objects.all()
         Serialized_employees=EmployeeSerializer(Employees,many=True)
         return Response(Serialized_employees.data)
@@ -78,13 +97,25 @@ class List_Employees(APIView):
 class Employee_Detail(APIView):
     permission_classes = [AllowAny]
     parser_classes = [MultiPartParser, FormParser] 
-    @role_required('admin')
+    
     def get(self, request ,emailDetail,currentEmployee,format=None):
        print('from biottom',emailDetail)
        #print('my current Employee==>',currentEmployee)
        Emp=Employee.objects.get(email=emailDetail)
        serializedEmployee=EmployeeSerializer(Emp,many=False)
        #print('this employee', serializedEmployee.data)
+       
+       return Response(serializedEmployee.data)
+class Employee_Detail_Login(APIView):
+    permission_classes = [AllowAny]
+    parser_classes = [MultiPartParser, FormParser] 
+    
+    def get(self, request ,emailDetail,format=None):
+       
+       
+       Emp=Employee.objects.get(email=emailDetail)
+       serializedEmployee=EmployeeSerializer(Emp,many=False)
+       
        
        return Response(serializedEmployee.data)
 
