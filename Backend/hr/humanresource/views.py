@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 
 from django.http import HttpResponse, HttpResponseForbidden
@@ -139,14 +140,19 @@ class Create_Employee (APIView):
     #parser_classes = [MultiPartParser, FormParser] 
     def post(self,request,format=None):
             data=request.data
-       
+            print('request data====================>',data)
         # serialzer=EmployeeSerializer(data=request.data)
         
             newEmployee = Employee.objects.create(
-            email=data["email"],First_name=data["First_name"],Middle_name=data["Middle_name"],Last_name=data["Last_name"],phoneNumber=data["phoneNumber"],employed=data["employed"],salary=data["salary"],EmployedBy=data["EmployedBy"]
+            email=data["email"],First_name=data["First_name"],
+            Middle_name=data["Middle_name"],
+            Last_name=data["Last_name"],
+            phoneNumber=data["phoneNumber"],
+            employed=False,salary=data["salary"]
             )  
             newEmployee.save()
-            for userRole in request.data["Role"]:
+            role_data = json.loads(data["Role"])
+            for userRole in role_data:
                 role_obj=Role.objects.get(id=userRole["id"])
                 newEmployee.Role.add(role_obj)
             

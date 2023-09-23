@@ -46,7 +46,7 @@ console.log("is authenticated",isAuthenticated)
               <Typography 
               variant='h6'
               className='logo'
-              >Human Resourceerer</Typography>
+              >Human Resource</Typography>
                 {isAuthenticated==false && <h3>wrong authentication</h3> }
                 <TextField 
                 onChange={onChange} 
@@ -69,7 +69,7 @@ console.log("is authenticated",isAuthenticated)
                 <Button variant='contained' type='submit'  sx={{width:210}}>Login</Button>
               </form>
               <p>
-                Forgot your password <Link to='/ResetPassword'>Reset Password</Link>
+                Forgot your password <Link to='/ResetPassword'> <br/>    Reset Password</Link>
               </p>
             
             </Paper>

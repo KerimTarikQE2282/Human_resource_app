@@ -21,6 +21,7 @@ const MenuProps = {
 
 function AddEmployees({AddEmployeeAuthentication,AddEmployeeData,user,user_auth_created}) {
   const theme = useTheme();
+  const [responseRoles, setResponseRoles] = React.useState([]);
   const [newEmployee,setnewEmployee]=React.useState({
     First_name: '',
     Middle_name: '',
@@ -31,45 +32,49 @@ function AddEmployees({AddEmployeeAuthentication,AddEmployeeData,user,user_auth_
     title: '',
     department: '',
     salary: 0,
-    Employee_Role:[],
     password: '',
     re_password:'',
+    Role:[]
     
 });
+const [RoleFormat, setRoleFormat] = React.useState([{ id: '' }]);
 const [postImage,setPostImage]=React.useState(null);
-const [Role, setRole] = React.useState([]);
-console.log('available roles===>',Role)
-const [responseRoles, setResponseRoles] = React.useState([]);
-console.log(responseRoles)
+const [UserRole, setUserRole] = React.useState([]);
+React.useEffect(()=>{
+  UserRole.map(res=>{
+    //console.log(res.id)
+    
+    setnewEmployee({
+      ...newEmployee,
+      Role:[...newEmployee.Role,{id:res.id}]
+    })
+  })
+},[UserRole])
+
+
+console.log(newEmployee)
+
 //States*********************************************************
 
-  const handleChange=(e)=>{
-    if ([e.target.name !=='employee_image']){
-      setnewEmployee(
-        {
-        ...newEmployee,
-        [e.target.name]:e.target.value
-         })
-    }
-    else if ([e.target.name]=='employee_image'){
-      setPostImage(
-        {
-          image: e.target.files,
-        }
-      )
-    }
-    else if([e.target.name] == 'Role'){
-      const {
-        target: { value },
-      } = e;
-      setRole(
-        // On autofill we get a stringified value.
-        typeof value === 'string' ? value.split(',') : value,
-      );
-    }
- 
-    
-  }
+const handleChange = (e) => {
+  if (e.target.name !== 'employee_image') {
+    setnewEmployee({
+      ...newEmployee,
+      [e.target.name]: e.target.value,
+    });
+  } else if (e.target.name === 'employee_image') {
+    setPostImage({
+      image: e.target.files,
+    });
+  } 
+};
+const handleRoleChange=(e)=>{
+  const {
+    target: { value },
+  } = e;
+  setUserRole(typeof value === 'string' ? value.split(',') : value);
+  console.log('being changed');
+}
   //Handle Change*****************************************************
   const EmployedBy=user.email //Employed by whom
   //******************************************* */
@@ -88,7 +93,7 @@ console.log(responseRoles)
  
  
   const {email,password,re_password}=newEmployee
-  const {First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary }=newEmployee
+  const {First_name, Middle_name,Last_name,phoneNumber,employed,title,department,salary,Role }=newEmployee
   const HandleSubmit = (e) => {
     e.preventDefault();
     AddEmployeeAuthentication(email, password, re_password);
@@ -104,12 +109,12 @@ console.log(responseRoles)
     department,
     salary,
     postImage.image,
-    EmployedBy
+    Role
       );
       };
 
     //**********************send the input data to the action handler ********************/
-      
+      console.log()
   return (
     
     <div className='EmployeeHireGeneral' >
@@ -122,12 +127,13 @@ console.log(responseRoles)
         
       </Typography>
         <form className='EmployeeHireField' onSubmit={HandleSubmit}  encType="multipart/form-data">
-         
+         <div>
             <TextField
             placeholder='First Name'
             name="First_name"
             value={newEmployee.First_name}
             onChange={handleChange}
+            
             />
             <br/>
             <TextField
@@ -151,6 +157,7 @@ console.log(responseRoles)
             onChange={handleChange}
             />
            
+           
             <br/>
             <TextField
             placeholder='Phone number'
@@ -167,6 +174,8 @@ console.log(responseRoles)
             value={newEmployee.title}
             onChange={handleChange}
             />
+            </div>
+            <div>
             <br/>
             <TextField
             placeholder='Department'
@@ -198,28 +207,32 @@ console.log(responseRoles)
 <br/>
 <br/>
 <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-name-label">Roles</InputLabel>
-        <Select
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
-          multiple
-          value={Role}
-          onChange={handleChange}
-          input={<OutlinedInput label="Role" />}
-          MenuProps={MenuProps}
-        >
-          {responseRoles.map((res) => (
-            <MenuItem
-              key={res.id}
-              value={res.RoleName}
-              
-            >
-              {res.RoleName}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-
+  <InputLabel id="demo-multiple-name-label">Roles</InputLabel>
+  <Select
+    labelId="demo-multiple-name-label"
+    id="demo-multiple-name"
+    multiple
+    value={UserRole}
+    input={<OutlinedInput label="UserRole" />}
+    name="Role"
+    renderValue={(selected) => (
+      <div>
+        {selected.map((value) => (
+          <Chip key={value.id} label={value.RoleName} />
+        ))}
+      </div>
+    )}
+    onChange={handleRoleChange}
+  >
+    {responseRoles.map((res) => (
+      <MenuItem key={res.id} value={res}>
+        {res.RoleName}
+      </MenuItem>
+    ))}
+  </Select>
+</FormControl>
+</div>
+<div>
         <Button
        variant='contained' 
        type='submit'
@@ -227,7 +240,7 @@ console.log(responseRoles)
         
         
 
-            
+        </div>
         </form>
         </Paper>
         </div>

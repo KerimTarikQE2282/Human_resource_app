@@ -121,7 +121,9 @@ margin-top: 4%;
 }
 
 
-
+.EmployeeHireField div  {
+  margin: 10px;
+}
 .EmployeeHire h5{
   position: relative;
   top:30px;
