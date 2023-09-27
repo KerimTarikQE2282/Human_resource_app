@@ -22,6 +22,9 @@ from rest_framework.permissions import AllowAny
 from django.views.decorators.csrf import csrf_exempt
 from .models import Employee
 from .models import Role
+from .models import Job
+from .models import Task
+from .serializers import Task_serializer
 from rest_framework.permissions import BasePermission
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required
@@ -157,19 +160,60 @@ class Create_Employee (APIView):
                 newEmployee.Role.add(role_obj)
             
             return Response("Done")
-class Create_Job(APIView):
+class Job_view(APIView):
     permission_classes = [AllowAny]
-    def post(self,request,format=None):
-        print(request.data)
-        serializedJob=Job_serializer(data=request.data)
-        print(serializedJob)
+
+    def post(self, request, format=None):
+        serialized_job = Job_serializer(data=request.data)
+        print(serialized_job)
+        if serialized_job.is_valid():
+            serialized_job.save()
+            return Response(serialized_job.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serialized_job.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get(self, request,format=None):
+        Jobs=Job.objects.all()
+        serialized_jobs=Job_serializer(Jobs,many=True)
+        return Response(serialized_jobs.data)
+    def put(self,request,id,format=None):
+       
+        myJob=Job.objects.get(id=id)
+        serializedJob=Job_serializer(instance=myJob,data=request.data)
 
         if serializedJob.is_valid():
             serializedJob.save()
-            return Response(serializedJob.data,status=status.HTTP_200_OK)
+            return Response(serializedJob.data)
         else:
-             return Response(serializedJob.data,status=status.HTTP_400_BAD_REQUEST)
-    
+            return Response(serializedJob.errors)
+class Task_view(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request, format=None):
+        serialized_Task = Task_serializer(data=request.data)
+        print(serialized_Task)
+        if serialized_Task.is_valid():
+            serialized_Task.save()
+            return Response(serialized_Task.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serialized_Task.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get(self, request,id,format=None):
+        Tasks=Task.objects.filter(Task_set_to=id)
+        serialized_Tasks=Task_serializer(Tasks,many=True)
+        return Response(serialized_Tasks.data)
+    def put(self,request,id,format=None):
+       
+        myTask=Task.objects.get(id=id)
+        serializedTask=Task_serializer(instance=myTask,data=request.data)
+
+        if serializedTask.is_valid():
+            serializedTask.save()
+            return Response(serializedTask.data)
+        else:
+            return Response(serializedTask.errors)
+
+
+
+
 
 class Role_view(APIView):
     permission_classes = [AllowAny]

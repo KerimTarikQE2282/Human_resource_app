@@ -71,10 +71,25 @@ class Employee(models.Model):
     def get_short_name(self):
         return self.First_name
 class Job(models.Model):
-    JobName=models.CharField(max_length=255,default='')
+    JobName=models.CharField(max_length=255)
+    jobSetBy=models.CharField(max_length=255)
+    Job_description=models.CharField(max_length=255)
     Job_Available=models.BooleanField(default=True)
+
+from django.db import models
+
+class Task(models.Model):
+    Task_name = models.CharField(max_length=255, default='')
+    Task_description = models.CharField(max_length=1000, default='')
+    Task_set_By = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='tasks_set_by')
+    Task_set_to = models.ForeignKey(Employee, on_delete=models.CASCADE,related_name='tasks_set_to')
+    Task_completed=models.BooleanField()
+def __str__(self):
+        return self.Task_name
+
 class Roles(models.Model):
     RoleName=models.CharField(max_length=255)    
+
 class Referer(models.Model):
     First_name=models.CharField(max_length=55,default='')
     Middle_name=models.CharField(max_length=55,default='')

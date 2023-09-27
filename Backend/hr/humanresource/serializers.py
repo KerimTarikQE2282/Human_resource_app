@@ -4,6 +4,7 @@ from rest_framework import serializers
 from .models import Employee
 from .models import Job
 from .models import Role
+from .models import Task
 from django.contrib.auth.models import User
 
 
@@ -31,9 +32,13 @@ class EmployeeSerializer(serializers.ModelSerializer):
 class Job_serializer(serializers.ModelSerializer):
     class Meta:
         model=Job
-        fields='__all__'
+        fields=('id','JobName','jobSetBy','Job_description','Job_Available')
 
 class Role_serializer(serializers.ModelSerializer):
     class Meta:
         model=Role
+        fields='__all__'
+class Task_serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Task
         fields='__all__'

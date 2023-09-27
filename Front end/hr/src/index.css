@@ -226,6 +226,7 @@ top:15vh
   left:5vw;
   bottom: 7vh;
   margin: 0;
+  width: 20vw;
  
 }
 
@@ -339,4 +340,50 @@ top:15vh
   .EmployeeDetailDIv img{
     width: 20vw;
   }
+  /****************************************************NoticeDiv****************************************************************/
+
+  .NoticeDiv{
+    width: 30vw;
+    height: 45vh;
+    padding:2em;
+    
+    position: relative;
+    left: 45vw;
+    bottom: 3vh;
+    
+   overflow: auto;
+ 
+  }
+  html::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+  html::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+  }
+  html::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+/*********************************************************TaskList*************************************************************/
+
+.TaskList{
+  width: 42vw;
+  height: 45vh;
+  padding:2em;
   
+  position: relative;
+  right: 28vw;
+  bottom: 3vh;
+  
+ overflow: auto;
+
+}
+
+  /*****************************************************Table Row***************************************************************/
+  .TabelRow:hover{
+    background-color: 	#c0c0c0;
+    cursor: pointer;
+  }
+  .Divider{
+    margin: 2em;
+  }

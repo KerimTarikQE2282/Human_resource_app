@@ -15,8 +15,9 @@ function LandingPage({user,load_user}) {
       <Welcome props={user} />
       <Calendar />
       <br/>
-      {/* <TaskList  />
-      <NoticeBoard/> */}
+      <NoticeBoard/>
+      <TaskList  />
+    
      
       
       
