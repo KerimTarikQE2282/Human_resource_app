@@ -17,7 +17,7 @@ from rest_framework import status
 from rest_framework.parsers import MultiPartParser,FormParser
 from rest_framework import permissions
 from rest_framework.permissions import IsAuthenticated
-from .serializers import Task_serializer
+from .serializers import Job_serializer
 from rest_framework.permissions import AllowAny
 from django.views.decorators.csrf import csrf_exempt
 from .models import Employee
@@ -88,7 +88,7 @@ class AllowUnauthenticated(BasePermission):
 
 class List_Employees(APIView):
     permission_classes = [AllowAny]
-    @role_required(['IT'])
+    #@role_required(['IT'])
     def get(self, request,currentEmployee,format=None):
         print(currentEmployee)
         Employees=Employee.objects.all()
@@ -157,15 +157,18 @@ class Create_Employee (APIView):
                 newEmployee.Role.add(role_obj)
             
             return Response("Done")
-class Create_Task(APIView):
+class Create_Job(APIView):
     permission_classes = [AllowAny]
     def post(self,request,format=None):
-        serializedTask=Task_serializer(data=request.data)
-        if serializedTask.is_valid():
-            serializedTask.save()
-            return Response(serializedTask.data,status=status.HTTP_200_OK)
+        print(request.data)
+        serializedJob=Job_serializer(data=request.data)
+        print(serializedJob)
+
+        if serializedJob.is_valid():
+            serializedJob.save()
+            return Response(serializedJob.data,status=status.HTTP_200_OK)
         else:
-             return Response(serializedTask.data,status=status.HTTP_400_BAD_REQUEST)
+             return Response(serializedJob.data,status=status.HTTP_400_BAD_REQUEST)
     
 
 class Role_view(APIView):

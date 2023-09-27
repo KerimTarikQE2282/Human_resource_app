@@ -4,7 +4,6 @@ const initialState = {
   
   export default function(state = initialState, action) {
     const { type, payload } = action;
-    console.log("Reached employee Reducer")
     switch (type) {
       case 'SetEmail':
         return {

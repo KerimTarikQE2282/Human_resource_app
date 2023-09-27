@@ -17,10 +17,21 @@ code {
 .layoutChildren{
   margin-left: 2vw;
 }
+.NavLogo{
+  position: relative;
+  right: 9vw;
+}
 .NavBar{
- width: 88vw;
+ width: 100vw;
  position: fixed;
  right: 0;
+}
+
+.userDrawerImage{
+  width: 5vw;
+  margin-left: 2.5vw;
+  margin-top: 2vw;
+  border-radius: 100px;
 }
 .LoginMain p{
   position: relative;
@@ -186,26 +197,38 @@ flex-direction: row;
 flex-wrap: wrap;
 position: relative;
 right: 2em;
-top:10vh
+top:15vh
+
+}
+.HomePage div{
+  margin: 0;
 
 }
 .HomeDiv{
-  
-  width: 30vw;
-  height: 30vh;
+ 
+  width: 50vw;
+  height: 35vh;
   padding: 2em;
-  margin: 2em;
-  border-radius: 20px;
+  position: relative;
+  left: 2vw;
+  bottom: 6vh;
+
+  
 
  
 }
+.drawerName{
+  margin-top: 4vh;
+  margin-left: 3vw;
+}
 .Calendar{
   position: relative;
-  left:2em;
-  top: 3vh;
-  width: 33vw;
-  height: 37vh;
+  left:5vw;
+  bottom: 7vh;
+  margin: 0;
+ 
 }
+
 
 .HomePage p{
   margin: 50 em;
@@ -245,7 +268,7 @@ top:10vh
   }
   .innerinnerdrawer{
     position: relative;
-    bottom: 15vh;
+    bottom: 35vh;
   }
   .innerdrawer li{
     margin-top: 1vh;
@@ -316,3 +339,4 @@ top:10vh
   .EmployeeDetailDIv img{
     width: 20vw;
   }
+  

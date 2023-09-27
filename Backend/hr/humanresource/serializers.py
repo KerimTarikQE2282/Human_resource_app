@@ -2,7 +2,7 @@ from djoser.serializers import UserCreateSerializer
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import Employee
-from .models import Tasks
+from .models import Job
 from .models import Role
 from django.contrib.auth.models import User
 
@@ -28,9 +28,9 @@ class EmployeeSerializer(serializers.ModelSerializer):
         fields='__all__'
         depth=1
 
-class Task_serializer(serializers.ModelSerializer):
+class Job_serializer(serializers.ModelSerializer):
     class Meta:
-        model=Tasks
+        model=Job
         fields='__all__'
 
 class Role_serializer(serializers.ModelSerializer):

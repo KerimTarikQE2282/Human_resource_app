@@ -70,12 +70,9 @@ class Employee(models.Model):
 
     def get_short_name(self):
         return self.First_name
-class Tasks(models.Model):
-    SetBy=models.CharField(max_length=200,blank=False)
-    TaskTitle=models.CharField(max_length=300,blank=False)
-    TaskDetail=models.CharField(max_length=5000,blank=False)
-    SetTo=models.CharField(max_length=200,blank=False)
-
+class Job(models.Model):
+    JobName=models.CharField(max_length=255,default='')
+    Job_Available=models.BooleanField(default=True)
 class Roles(models.Model):
     RoleName=models.CharField(max_length=255)    
 class Referer(models.Model):

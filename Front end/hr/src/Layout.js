@@ -10,8 +10,9 @@ function Layout({ checkAuthenticated, load_user, currentUser, children }) {
     load_user();
   }, [checkAuthenticated, load_user]);
 
-  console.log('fromLaytout===>',currentUser);
+  React.useEffect(()=>{
 
+  },[])
   return (
     
     <div className='Layout'>

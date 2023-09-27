@@ -41,10 +41,10 @@ function NavBar({ logout, isAuthenticated }) {
   return (
     <div>
       <Box sx={{ flexGrow: 1 }} className='NavBar'>
-        <AppBar position='static'>
+        <AppBar position='static' elevation={0}>
           <Toolbar>
             <IconButton size='large' edge='start' color='inherit' aria-label='menu' sx={{ mr: 20 }}></IconButton>
-            <Typography variant='h6' component='div' sx={{ flexGrow: 1 }} onClick={()=>GoHome()}>
+            <Typography variant='h6' className='NavLogo' sx={{ flexGrow: 1 }} onClick={()=>GoHome()}>
               HR system
             </Typography>
             {isAuthenticated ? authLinks() : guestLinks()}

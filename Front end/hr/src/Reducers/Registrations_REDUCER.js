@@ -13,7 +13,6 @@ import {
   };
   
   export default function(state = initialState, action) {
-    console.log("create employee reached here")
     const { type, payload } = action;
   
     switch(type) {

@@ -12,12 +12,11 @@ function LandingPage({user,load_user}) {
 
   return (
     <div className='HomePage'>
-       <Welcome props={user} />
-       <Calendar />
-      
+      <Welcome props={user} />
+      <Calendar />
       <br/>
-      <TaskList />
-      <NoticeBoard/>
+      {/* <TaskList  />
+      <NoticeBoard/> */}
      
       
       
