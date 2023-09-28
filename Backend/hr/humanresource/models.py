@@ -95,3 +95,9 @@ class Referer(models.Model):
     Middle_name=models.CharField(max_length=55,default='')
     Last_name=models.CharField(default='', max_length=50)
     Referer_image=models.ImageField(_("Image"), upload_to=upload_Referer_images_to,default='posts/default.jpg')
+class Email(models.Model):
+    SentBy=models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='Email_sent_by')
+    SentTo=models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='Email_sent_To')
+    EmailTitle=models.CharField(max_length=500)
+    EmailSubject=models.CharField(max_length=500)
+    EmailBody=models.CharField(max_length=5000)

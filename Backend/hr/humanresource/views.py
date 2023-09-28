@@ -25,6 +25,7 @@ from .models import Role
 from .models import Job
 from .models import Task
 from .serializers import Task_serializer
+from .serializers import Email_serializer
 from rest_framework.permissions import BasePermission
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required
@@ -210,7 +211,16 @@ class Task_view(APIView):
             return Response(serializedTask.data)
         else:
             return Response(serializedTask.errors)
-
+class Email_view(APIView):
+        permission_classes = [AllowAny]
+        def post(self, request, format=None):
+            serialized_Email = Email_serializer(data=request.data)
+            print(serialized_Email)
+            if serialized_Email.is_valid():
+                serialized_Email.save()
+                return Response(serialized_Email.data, status=status.HTTP_200_OK)
+            else:
+                return Response(serialized_Email.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 

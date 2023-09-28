@@ -13,7 +13,9 @@ urlpatterns=[
  path('Create_Task/',views.Task_view.as_view(),name='Create_Task'),
  path('<int:id>/View_Tasks/',views.Task_view.as_view(),name='Create_Job'),
  path('<int:id>/Update_Task/',views.Task_view.as_view(),name='update_Task'),
- path('Role/',views.Role_view.as_view(),name='Create_Task')
+ path('Role/',views.Role_view.as_view(),name='Create_Task'),
+ path('Create_Email/',views.Email_view.as_view(),name='Create_Email')
+
 
 
 ]

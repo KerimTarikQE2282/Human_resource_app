@@ -5,6 +5,7 @@ from .models import Employee
 from .models import Job
 from .models import Role
 from .models import Task
+from .models import Email
 from django.contrib.auth.models import User
 
 
@@ -41,4 +42,8 @@ class Role_serializer(serializers.ModelSerializer):
 class Task_serializer(serializers.ModelSerializer):
     class Meta:
         model=Task
+        fields='__all__'
+class Email_serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Email
         fields='__all__'
