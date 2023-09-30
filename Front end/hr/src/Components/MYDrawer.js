@@ -22,6 +22,8 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
+import EmailIcon from '@mui/icons-material/Email';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -92,6 +94,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function MiniDrawer() {
   const theme = useTheme();
+  const navigate=useNavigate()
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -101,6 +104,9 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleEmail=()=>{
+    navigate('/ComposeEmail')
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -212,14 +218,36 @@ export default function MiniDrawer() {
                 >
                  <UpgradeIcon />  
                 </ListItemIcon>
-                <ListItemText primary={'Update Employee Information'} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={'Update Employee Info'} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
             {/****************************************************************************************** */}
             
-        </List>
+            
+        </List >
         <Divider />
-     
+        <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>handleEmail()}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                 <EmailIcon />  
+                </ListItemIcon>
+                <ListItemText primary={'compose Email'} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+            {/****************************************************************************************** */}
+        
       </Drawer>
       </Box>
   );

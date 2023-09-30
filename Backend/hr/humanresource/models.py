@@ -98,6 +98,6 @@ class Referer(models.Model):
 class Email(models.Model):
     SentBy=models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='Email_sent_by')
     SentTo=models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='Email_sent_To')
-    EmailTitle=models.CharField(max_length=500)
+    seen=models.BooleanField(default=False)
     EmailSubject=models.CharField(max_length=500)
     EmailBody=models.CharField(max_length=5000)

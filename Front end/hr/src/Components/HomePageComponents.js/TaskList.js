@@ -40,7 +40,7 @@ const tableRows= tasks?.map((row) => (
 ))
 console.log(tasks)
   return (
-    <Paper className='TaskList'  elevation={5}>
+    <Paper className='TaskList'  elevation={2}>
    <Typography variant='h5'> Task lists</Typography>
    <Divider className='Divider'/>
     <TableContainer component={Paper}>

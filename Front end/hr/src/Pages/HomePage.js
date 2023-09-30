@@ -7,6 +7,7 @@ import Welcome from '../Components/HomePageComponents.js/Welcome';
 import { load_user } from '../actions/auth';
 import { connect, useSelector } from 'react-redux';
 import NoticeBoard from '../Components/HomePageComponents.js/NoticeBoard';
+import Emails from '../Components/HomePageComponents.js/Emails';
 
 function LandingPage({user,load_user}) {
 
@@ -15,8 +16,11 @@ function LandingPage({user,load_user}) {
       <Welcome props={user} />
       <Calendar />
       <br/>
-      <NoticeBoard/>
+      
+      
       <TaskList  />
+      <Emails/>
+      <NoticeBoard/>
     
      
       

@@ -197,13 +197,10 @@ flex-direction: row;
 flex-wrap: wrap;
 position: relative;
 right: 2em;
-top:15vh
-
+top:15vh;
+width:90vw
 }
-.HomePage div{
-  margin: 0;
 
-}
 .HomeDiv{
  
   width: 50vw;
@@ -343,16 +340,11 @@ top:15vh
   /****************************************************NoticeDiv****************************************************************/
 
   .NoticeDiv{
-    width: 30vw;
-    height: 45vh;
-    padding:2em;
-    
-    position: relative;
-    left: 45vw;
-    bottom: 3vh;
-    
-   overflow: auto;
- 
+   position: relative;
+   left: 5vw;
+   width: 18vw;
+  bottom: 43.5vh;
+  height: 60vh;
   }
   html::-webkit-scrollbar-track {
     background-color: #f1f1f1;
@@ -367,13 +359,13 @@ top:15vh
 /*********************************************************TaskList*************************************************************/
 
 .TaskList{
-  width: 42vw;
+  width: 36vw;
   height: 45vh;
   padding:2em;
   
   position: relative;
-  right: 28vw;
-  bottom: 3vh;
+ left: 2vw;
+  bottom: 5vh;
   
  overflow: auto;
 
@@ -386,4 +378,45 @@ top:15vh
   }
   .Divider{
     margin: 2em;
+  }
+
+  /****************************************************compose Email********************************************************************/
+
+  .composeEmail{
+    position: relative;
+    top: 10vh;
+    width:80vw;
+    height:80vh
+  }
+  .composeEmail h4{
+    position: relative;
+    top: 3vh;
+    left: 3vw;
+  }
+  .EmailForm{
+    position: relative;
+    top: 10vh;
+    left: 5vw;
+  }
+  .EmailTitle{
+    width: 30vw;
+    margin-top: 3vh;
+  }
+  .Body{
+    position: relative;
+    top: 5vh;
+    width: 50vw;
+    height: 50vh;
+  }
+  .EmailRecipient{
+    position: relative;
+    bottom: 5vh;
+  }
+  /******************************************************Email List**************************************************/
+  .Email{
+    position: relative;
+    left:3.2vw;
+    bottom: 5vh;
+    width: 36vw;
+    height: 45vh;
   }

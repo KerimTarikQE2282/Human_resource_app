@@ -24,6 +24,7 @@ from .models import Employee
 from .models import Role
 from .models import Job
 from .models import Task
+from .models import Email
 from .serializers import Task_serializer
 from .serializers import Email_serializer
 from rest_framework.permissions import BasePermission
@@ -221,6 +222,10 @@ class Email_view(APIView):
                 return Response(serialized_Email.data, status=status.HTTP_200_OK)
             else:
                 return Response(serialized_Email.errors, status=status.HTTP_400_BAD_REQUEST)
+        def get(self, request,current_user,format=None):
+            myEmail=Email.objects.filter(SentTo=current_user)
+            Serilized_Email=Email_serializer(myEmail,many=True)
+            return Response(Serilized_Email.data)
 
 
 
