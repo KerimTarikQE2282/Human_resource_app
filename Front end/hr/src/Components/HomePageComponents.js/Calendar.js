@@ -6,7 +6,7 @@ import { Paper } from '@mui/material';
 
 export default function BasicDateCalendar() {
   return (
-    <Paper className='Calendar' elevation={5}>
+    <Paper className='Calendar' elevation={2}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar />
     </LocalizationProvider>

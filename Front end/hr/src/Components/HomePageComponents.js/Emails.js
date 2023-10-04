@@ -41,16 +41,18 @@ function Emails({getEmail,user,userEmails}) {
 
 
   return (
-    <Paper className='Email'>
+    <Paper className='Email' elevation={2}>
+      <div className='InnerEmailAndTask'>
       <Typography variant='h5'>Email</Typography>
       
-    <TableContainer component={Paper}>
-    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer >
+    <Table sx={{ minWidth: 100 }} aria-label="simple table">
     <TableBody>
     {tableRows}
     </TableBody>
     </Table>
     </TableContainer>
+    </div>
     </Paper>
   )
 }

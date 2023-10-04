@@ -19,6 +19,7 @@ import AddRole from './Pages/AddRole';
 import AddJob from './Pages/AddJob';
 import TaskDetail from './Components/HomePageComponents.js/TaskDetail';
 import ComposeEmail from './Pages/ComposeEmail';
+import ActivateAccount from './Pages/ActivateAccount';
 function App() {
   const location = useLocation();
   const isResetPasswordConfirmPage = location.pathname.startsWith('/password/reset/confirm/');
@@ -52,6 +53,8 @@ function App() {
               <Route path="/AddJob" element={<AddJob />} />
               <Route path="/TaskDetail" element={<TaskDetail />} />
               <Route path="/ComposeEmail" element={<ComposeEmail />} />
+              <Route path="/activate/:id/:token/" element={<ActivateAccount />} />
+
 
               
               

@@ -11,4 +11,4 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     re_path(r'^password/reset/confirm', lambda request: redirect(request.build_absolute_uri().replace('localhost:8000', 'localhost:3000'))),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    re_path(r'^activate/(?P<id>\w+)/(?P<token>[-\w]+)/$', lambda request, id, token: redirect(f'http://localhost:3000/activate/{id}/{token}/'))] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

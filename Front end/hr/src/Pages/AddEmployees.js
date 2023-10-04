@@ -76,7 +76,7 @@ const handleRoleChange=(e)=>{
   console.log('being changed');
 }
   //Handle Change*****************************************************
-  const EmployedBy=user.email //Employed by whom
+  const EmployedBy=user?.email //Employed by whom
   //******************************************* */
   React.useEffect(() => {
     axios.get('http://localhost:8000/api/Role/')

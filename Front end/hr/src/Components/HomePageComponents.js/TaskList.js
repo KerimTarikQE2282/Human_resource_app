@@ -1,4 +1,4 @@
-import { Divider, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from '@mui/material'
+import { Divider, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import axios from 'axios'
 import React from 'react'
 import TaskDetail from './TaskDetail'
@@ -34,22 +34,30 @@ const tableRows= tasks?.map((row) => (
     className='TabelRow'
     onClick={()=>handleClick(row)}
   >
-    <TableCell align="center">{row.Task_name}</TableCell>
+    <TableCell align="left">{row.Task_name}</TableCell>
   
   </TableRow>
 ))
 console.log(tasks)
   return (
     <Paper className='TaskList'  elevation={2}>
-   <Typography variant='h5'> Task lists</Typography>
+      <div className='InnerEmailAndTask'>
+   <Typography variant='h5'> <strong>Task lists</strong></Typography>
    <Divider className='Divider'/>
-    <TableContainer component={Paper}>
-    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer >
+    <Table sx={{ minWidth: 100 }} aria-label="simple table">
+    <TableHead>
+          <TableRow>
+            <TableCell  align="left">Your Tasks</TableCell>
+           
+          </TableRow>
+        </TableHead>
     <TableBody>
     {tableRows}
     </TableBody>
     </Table>
     </TableContainer>
+    </div>
     </Paper>
   )
 }

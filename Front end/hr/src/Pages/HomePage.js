@@ -13,6 +13,7 @@ function LandingPage({user,load_user}) {
 
   return (
     <div className='HomePage'>
+      
       <Welcome props={user} />
       <Calendar />
       <br/>

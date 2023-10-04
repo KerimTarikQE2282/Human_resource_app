@@ -7,12 +7,11 @@ function AddJob() {
     <div className='PostJob'>
         <form>
             <TextField
-            variant='contained'
+            
             label='Post Job'
             />
         </form>
     </div>
   )
 }
-
 export default AddJob

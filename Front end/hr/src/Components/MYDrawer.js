@@ -218,7 +218,7 @@ export default function MiniDrawer() {
                 >
                  <UpgradeIcon />  
                 </ListItemIcon>
-                <ListItemText primary={'Update Employee Info'} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={'Update Employee'} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
             {/****************************************************************************************** */}

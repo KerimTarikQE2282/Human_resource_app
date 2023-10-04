@@ -6,7 +6,7 @@ function Welcome({user,image}) {
 
 const view_image=`http://localhost:8000${user?.employee_image}/`
   return (
-    <Paper className='HomeDiv' elevation={2}>
+    <Paper className='WelcomeDiv' elevation={2}>
   
    <img src={view_image} className='UserImageMain'/>
    <Typography variant='h5'>Welcome {user?.First_name} {user?.Middle_name}</Typography>

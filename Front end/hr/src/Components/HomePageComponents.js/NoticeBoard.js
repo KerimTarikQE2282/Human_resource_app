@@ -26,14 +26,14 @@ function NoticeBoard() {
   console.log(notice)
   return (
     
-   <Paper className='NoticeDiv' elevation={5}>
+   <Paper className='NoticeDiv' elevation={2}>
     
     <Typography
     variant='h5'
     >Notice Board</Typography>
     <Divider className='Divider'/>
     <TableContainer component={Paper}>
-    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <Table sx={{ minWidth: 100 }} aria-label="simple table">
     <TableBody>
     {tableRows}
     </TableBody>
